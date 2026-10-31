@@ -150,6 +150,10 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 .spec li em{display:block;font-style:normal;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 .art{font-size:12px;letter-spacing:.16em;color:var(--bronze);margin-top:8px}
 .desc{margin-top:14px;color:#cfc7bb;font-size:15px;line-height:1.6}
+.prices{margin-top:8px;border-top:1px solid var(--line)}
+.prow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.prow span{font-size:15px}
+.prow b{font-family:var(--serif);font-weight:500;font-size:22px;white-space:nowrap}
 .pinfo{font-size:14px;color:var(--bronze2);margin-top:6px}
 .price{font-family:var(--serif);font-size:26px;margin-top:8px}
 .note{font-size:13px;color:var(--muted);margin-top:6px}
@@ -523,6 +527,7 @@ const ITEMS = [
   size:null,
   options:{uk:"Можливо виготовити в золоті 750 (18K) чи з іншим кольором каміння",en:"Can be made in 750 (18K) gold or with stones of another colour",ro:"Poate fi realizată în aur 750 (18K) sau cu pietre de altă culoare"},
   priceInfo:{uk:"Ціна вказана за панагію з ланцюжком. Ланцюжок можна обрати на свій смак — не обов'язково той, що на фото.",en:"The price is for the panagia with a chain. You can choose any chain you like — not necessarily the one in the photo.",ro:"Prețul este pentru panaghie cu lanț. Puteți alege lanțul după preferință — nu neapărat cel din fotografie."},
+  prices:[{l:{uk:"Срібло з позолотою",en:"Gilded silver",ro:"Argint aurit"},p:55000},{l:{uk:"Срібло із золотом 585 (14K)",en:"Silver with 585 (14K) gold",ro:"Argint cu aur 585 (14K)"},p:145000}],
   price:55000},
  {id:"yeleinytsia-2", art:"OS-004", section:"yeleinytsi", hero:true, added:"2026-10-30", isNew:false,
   photos:["img/yeleinytsia-2-1.jpg","img/yeleinytsia-2-2.jpg"],
@@ -1183,7 +1188,7 @@ function itemPage(i){
           ${i.size?`<li><em>${t("fSize")}</em>${esc(i.size[lang])}</li>`:""}
           ${i.options?`<li><em>${t("fOptions")}</em>${esc(i.options[lang])}</li>`:""}
         </ul>
-        <div class="price">${price}</div>
+        ${i.prices?`<div class="prices">${i.prices.map(x=>`<div class="prow"><span>${esc(x.l[lang])}</span><b>${x.p.toLocaleString("uk-UA")} грн</b></div>`).join("")}</div>`:`<div class="price">${price}</div>`}
         ${i.priceInfo?`<p class="pinfo">${esc(i.priceInfo[lang])}</p>`:""}
         <p class="note">${t("priceNote")}</p>
         <div class="asklabel">${t("ask")}</div>
