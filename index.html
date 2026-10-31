@@ -150,6 +150,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 .spec li em{display:block;font-style:normal;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 .art{font-size:12px;letter-spacing:.16em;color:var(--bronze);margin-top:8px}
 .desc{margin-top:14px;color:#cfc7bb;font-size:15px;line-height:1.6}
+.pinfo{font-size:14px;color:var(--bronze2);margin-top:6px}
 .price{font-family:var(--serif);font-size:26px;margin-top:8px}
 .note{font-size:13px;color:var(--muted);margin-top:6px}
 .btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--bronze);color:#111;text-decoration:none;padding:14px 26px;font-weight:600;font-size:15px;letter-spacing:.03em}
@@ -415,7 +416,8 @@ const ITEMS = [
   stones:{uk:"Фіаніти кольору сапфір",en:"Sapphire-coloured cubic zirconia",ro:"Zirconii de culoarea safirului"},
   size:null,
   options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
-  price:null},
+  priceInfo:{uk:"Ціна вказана за панагію з ланцюжком. Ланцюжок можна обрати на свій смак — не обов'язково той, що на фото.",en:"The price is for the panagia with a chain. You can choose any chain you like — not necessarily the one in the photo.",ro:"Prețul este pentru panaghie cu lanț. Puteți alege lanțul după preferință — nu neapărat cel din fotografie."},
+  price:55000},
  {id:"moshchovyk-1", art:"MS-001", section:"moshchovyky-dlia-ikon", hero:true, added:"2026-10-30", isNew:false,
   photos:["img/moshchovyk-1.jpg"],
   name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
@@ -511,7 +513,8 @@ const ITEMS = [
   stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
   size:null,
   options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
-  price:null},
+  priceInfo:{uk:"Ціна вказана за панагію з ланцюжком. Ланцюжок можна обрати на свій смак — не обов'язково той, що на фото.",en:"The price is for the panagia with a chain. You can choose any chain you like — not necessarily the one in the photo.",ro:"Prețul este pentru panaghie cu lanț. Puteți alege lanțul după preferință — nu neapărat cel din fotografie."},
+  price:55000},
  {id:"panahiia-3", art:"KR-008", section:"panahii", hero:true, added:"2026-10-30", isNew:false,
   photos:["img/panahiia-3-1.jpg"],
   name:{uk:"Панагія",en:"Panagia",ro:"Panaghie"},
@@ -519,7 +522,8 @@ const ITEMS = [
   stones:{uk:"Фіаніти кольору аквамарин",en:"Aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea acvamarinului"},
   size:null,
   options:{uk:"Можливо виготовити в золоті 750 (18K) чи з іншим кольором каміння",en:"Can be made in 750 (18K) gold or with stones of another colour",ro:"Poate fi realizată în aur 750 (18K) sau cu pietre de altă culoare"},
-  price:null},
+  priceInfo:{uk:"Ціна вказана за панагію з ланцюжком. Ланцюжок можна обрати на свій смак — не обов'язково той, що на фото.",en:"The price is for the panagia with a chain. You can choose any chain you like — not necessarily the one in the photo.",ro:"Prețul este pentru panaghie cu lanț. Puteți alege lanțul după preferință — nu neapărat cel din fotografie."},
+  price:55000},
  {id:"yeleinytsia-2", art:"OS-004", section:"yeleinytsi", hero:true, added:"2026-10-30", isNew:false,
   photos:["img/yeleinytsia-2-1.jpg","img/yeleinytsia-2-2.jpg"],
   name:{uk:"Єлейниця з пензликом",en:"Holy oil vessel with brush",ro:"Vas pentru untdelemn sfințit cu pensulă"},
@@ -737,7 +741,8 @@ const ITEMS = [
   stones:{uk:"Перлини",en:"Pearls",ro:"Perle"},
   size:null,
   options:{uk:"Можливо виготовити з іншим образом, з елементами з золота чи з іншим камінням",en:"Can be made with another image, with solid gold elements or with other stones",ro:"Poate fi realizată cu altă icoană, cu elemente din aur sau cu alte pietre"},
-  price:null},
+  priceInfo:{uk:"Ціна вказана за панагію з ланцюжком. Ланцюжок можна обрати на свій смак — не обов'язково той, що на фото.",en:"The price is for the panagia with a chain. You can choose any chain you like — not necessarily the one in the photo.",ro:"Prețul este pentru panaghie cu lanț. Puteți alege lanțul după preferință — nu neapărat cel din fotografie."},
+  price:55000},
  {id:"naperstnyi-khrest-vynohrad", art:"KR-019", section:"naperstni-khresty", hero:true, added:"2026-10-31", isNew:false,
   photos:["img/naperstnyi-khrest-vynohrad-1.jpg"],
   name:{uk:"Наперсний хрест з виноградною лозою",en:"Pectoral cross with grapevine",ro:"Cruce pectorală cu viță-de-vie"},
@@ -1158,7 +1163,7 @@ function itemPage(i){
   const sec = SECTIONS[i.section], g = sec.groups[0];
   const url = location.href.split("#")[0] + "#item-" + i.id;
   const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t("wa")(i.name[lang]+" ("+i.art+")", url))}`;
-  const price = i.price ? `${t("priceFrom")} ${i.price.toLocaleString("uk-UA")} грн` : t("priceOnReq");
+  const price = i.price ? `${i.priceFrom?t("priceFrom")+" ":""}${i.price.toLocaleString("uk-UA")} грн` : t("priceOnReq");
   return `<section style="border:0"><div class="wrap">
     <div class="crumbs"><a href="#">${t("home")}</a> / <a href="#group-${g.id}">${g.n[lang]}</a> / <a href="#section-${sec.id}">${secName(sec.id)}</a></div>
     <div class="item">
@@ -1179,6 +1184,7 @@ function itemPage(i){
           ${i.options?`<li><em>${t("fOptions")}</em>${esc(i.options[lang])}</li>`:""}
         </ul>
         <div class="price">${price}</div>
+        ${i.priceInfo?`<p class="pinfo">${esc(i.priceInfo[lang])}</p>`:""}
         <p class="note">${t("priceNote")}</p>
         <div class="asklabel">${t("ask")}</div>
         ${askButtons(t("wa")(i.name[lang]+" ("+i.art+")", url))}
