@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Саранчук — ювелірна майстерня</title>
+<meta name="description" content="Ювелірна майстерня Саранчук. Церковне начиння та наперсні хрести у філіграні зі срібла й золота, ручна робота на замовлення, доставка по всьому світу">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#111110">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Саранчук — ювелірна майстерня">
+<meta property="og:description" content="Церковне начиння та наперсні хрести у філіграні зі срібла й золота. Ручна робота на замовлення, доставка по всьому світу.">
+<meta property="og:image" content="img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic,latin-ext" rel="stylesheet">
+<style>
+:root{
+  --bg:#111110; --bg2:#181716; --card:#1e1c1a; --line:#2e2a26;
+  --bronze:#b48a55; --bronze2:#d2ab74; --text:#ece6dc; --muted:#a29a8e;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Manrope',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:.01em}
+h2{font-size:clamp(26px,4vw,38px);margin-bottom:18px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze)}
+.rule{width:56px;height:1px;background:var(--bronze);margin:14px 0 26px}
+section{padding:72px 0;border-top:1px solid var(--line)}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;height:64px}
+.burger{width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:8px}
+.burger span{height:1px;background:var(--text);display:block}
+.logo{flex:1;text-decoration:none;display:flex;flex-direction:column;align-items:center;line-height:1.1}
+.logo img{height:28px;width:auto;margin-bottom:4px}
+.flogo{width:min(300px,70vw);margin:0 auto 18px;opacity:.9}
+.logo small{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--bronze)}
+.langs{display:flex;gap:2px}
+.langs button{font-size:12px;letter-spacing:.1em;padding:6px 7px;color:var(--muted)}
+.langs button.on{color:var(--bronze2)}
+
+/* search */
+.sbtn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--text)}
+.sbar{display:none;border-top:1px solid var(--line);padding:10px 0}
+.sbar.open{display:block}
+.sbar .wrap{display:flex;gap:8px;align-items:center}
+.sbar input{flex:1;background:var(--bg2);border:1px solid var(--line);color:var(--text);font:inherit;font-size:16px;padding:10px 14px;outline:none}
+.sbar input:focus{border-color:var(--bronze)}
+.sbar button{font-size:26px;color:var(--muted);width:36px}
+.sbar input::-webkit-search-cancel-button{display:none}
+.logo small{white-space:nowrap}
+@media (max-width:420px){.logo small{letter-spacing:.14em;font-size:9px}.bar{gap:8px}.langs button{padding:6px 5px}}
+.rest{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:24px}
+.rest img{width:100%;height:auto;border:1px solid var(--line);cursor:zoom-in}
+/* reviews + zoom */
+.revs{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.revs::-webkit-scrollbar{display:none}
+.revs img{flex:0 0 auto;width:min(62vw,300px);height:auto;aspect-ratio:9/16;object-fit:contain;background:#0d0d0c;border:1px solid var(--line);scroll-snap-align:start;cursor:zoom-in}
+.zoom{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:16px}
+.zoom.open{display:flex}
+.zoom img{max-width:100%;max-height:100%;object-fit:contain}
+.zoom button{position:absolute;top:10px;right:14px;font-size:34px;color:#fff}
+/* drawer */
+.drawer{position:fixed;inset:0;z-index:40;visibility:hidden}
+.drawer.open{visibility:visible}
+.drawer .shade{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:.25s}
+.drawer.open .shade{opacity:1}
+.drawer nav{position:absolute;top:0;bottom:0;left:0;width:min(340px,88vw);background:var(--bg2);border-right:1px solid var(--line);overflow-y:auto;padding:22px 24px 40px;transform:translateX(-100%);transition:.3s}
+.drawer.open nav{transform:none}
+.drawer h3{font-size:22px;margin-bottom:8px}
+.drawer .g{margin-top:20px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze)}
+.drawer a{display:block;text-decoration:none;padding:6px 0;color:var(--text);font-size:15px}
+.drawer a:hover{color:var(--bronze2)}
+.drawer .x{position:absolute;right:14px;top:14px;font-size:26px;color:var(--muted)}
+
+/* hero */
+.hero{padding:22px 0 24px;text-align:center;border:0}
+.hero h1{font-size:clamp(17px,2.8vw,26px);letter-spacing:.04em;line-height:1.15;font-weight:400;color:#cdb38a}
+.hero .sub{font-family:var(--sans);font-weight:300;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(13px,1.8vw,16px);color:var(--muted);margin-top:8px}
+.carousel{position:relative;margin-top:18px}
+.track{display:flex;align-items:flex-start;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 min(40vw,210px);min-width:0;overflow:hidden;scroll-snap-align:center;text-decoration:none;background:var(--card);border:1px solid var(--line)}
+.slide img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#0d0d0c}
+.slide p{padding:8px 10px;font-family:var(--serif);font-size:13px;line-height:1.3;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track.single{justify-content:center}
+.remark{max-width:760px;margin:24px auto 0;font-size:14px;color:var(--muted);border-left:1px solid var(--bronze);padding-left:18px;text-align:left}
+
+/* process */
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.vid{aspect-ratio:9/14;background:var(--card);border:1px solid var(--line);display:flex;align-items:flex-end;padding:14px;font-size:14px;color:var(--muted)}
+.pvids{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}.pvids::-webkit-scrollbar{display:none}
+.pstep{position:relative;margin:0;flex:0 0 min(40vw,210px);aspect-ratio:9/16;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.pstep img,.pstep video{width:100%;height:100%;object-fit:contain;background:#0d0d0c;display:block}
+.pstep figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px;font-size:13px !important;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:14px}
+.pstep figcaption span{color:var(--bronze);margin-right:8px;font-family:var(--serif)}
+.vid span{color:var(--bronze);margin-right:8px;font-family:var(--serif)}
+.soon{border:1px dashed #4a433b !important}
+
+/* catalog */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.tile{position:relative;text-decoration:none;background:#0d0d0c;border:1px solid var(--line);aspect-ratio:3/4;overflow:hidden;display:flex;align-items:flex-end}
+.tile img{position:absolute;inset:0 0 64px 0;width:100%;height:calc(100% - 64px);object-fit:contain;opacity:.9;transition:.4s}
+.tile:hover img{opacity:1}
+.tile .cap{position:relative;width:100%;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.tile .cap b{font-family:var(--serif);font-weight:500;font-size:16px;line-height:1.25;display:block}
+.tile .cap small{color:var(--muted);font-size:12px}
+.tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:64px;color:#2c2824}
+
+/* lists */
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:12px}
+.crumbs a{text-decoration:none;color:var(--bronze)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chips a{text-decoration:none;font-size:13px;border:1px solid var(--line);padding:6px 12px}
+.chips a:hover,.chips a.on{border-color:var(--bronze);color:var(--bronze2)}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.it p{font-size:15px !important;line-height:1.3}
+.it{text-decoration:none;background:var(--card);border:1px solid var(--line);position:relative}
+.it img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#0d0d0c}
+.it p{padding:12px 14px 4px;font-family:var(--serif);font-size:17px}
+.it small{display:block;padding:0 14px 14px;color:var(--muted);font-size:13px}
+.new{position:absolute;top:10px;left:10px;background:var(--bronze);color:#111;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px}
+.empty{color:var(--muted);padding:30px 0}
+
+/* item page */
+.item{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+.gal img{width:100%;height:auto;max-height:85vh;object-fit:contain;background:#0d0d0c;border:1px solid var(--line)}
+.thumbs{display:flex;gap:8px;margin-top:8px}
+.thumbs img{width:72px;aspect-ratio:3/4;object-fit:contain;background:#0d0d0c;opacity:.6;cursor:pointer;border:1px solid var(--line)}
+.thumbs img.on{opacity:1;border-color:var(--bronze)}
+.item h1{font-size:clamp(30px,4vw,44px);line-height:1.15}
+.spec{list-style:none;margin:22px 0;border-top:1px solid var(--line)}
+.spec li{padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.spec li em{display:block;font-style:normal;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.art{font-size:12px;letter-spacing:.16em;color:var(--bronze);margin-top:8px}
+.desc{margin-top:14px;color:#cfc7bb;font-size:15px;line-height:1.6}
+.price{font-family:var(--serif);font-size:26px;margin-top:8px}
+.note{font-size:13px;color:var(--muted);margin-top:6px}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--bronze);color:#111;text-decoration:none;padding:14px 26px;font-weight:600;font-size:15px;letter-spacing:.03em}
+.btn:hover{background:var(--bronze2)}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--bronze)}
+
+/* steps, gift */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;counter-reset:s}
+.step{border:1px solid var(--line);padding:24px;background:var(--bg2)}
+.step:before{counter-increment:s;content:counter(s);font-family:var(--serif);font-size:40px;color:var(--bronze);display:block;line-height:1;margin-bottom:12px}
+.terms{margin-top:22px;color:var(--muted);font-size:15px}
+.occ{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:26px}
+.occ div{border-top:1px solid var(--bronze);padding-top:16px}
+.occ h3{font-size:21px;margin-bottom:6px}
+.occ p{color:var(--muted);font-size:15px}
+.lead{font-size:18px;max-width:760px}
+.about-grid{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:center}
+.maister{width:100%;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--line);background:#0d0d0c}
+@media (max-width:760px){.about-grid{grid-template-columns:1fr;gap:24px}.maister{max-width:340px;margin:0 auto}}
+.about p{max-width:760px;font-size:17px;margin-bottom:14px}
+
+/* faq */
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{list-style:none;cursor:pointer;font-family:var(--serif);font-size:19px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:'+';color:var(--bronze);font-family:var(--sans);font-size:22px;line-height:1}
+.faq details[open] summary:after{content:'−'}
+.faq details p{margin-top:12px;color:#cfc7bb;max-width:820px}
+.faq .hl{border:1px solid var(--bronze);padding:18px 20px;margin-bottom:10px;background:linear-gradient(135deg,rgba(180,138,85,.10),transparent)}
+.faq .hl summary{color:var(--bronze2)}
+.faq .hl summary:before{content:'✦';margin-right:10px;color:var(--bronze)}
+.faq .hl summary{justify-content:flex-start}
+.faq .hl summary:after{margin-left:auto}
+
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:24px}
+.ph-grid div{aspect-ratio:1;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:#5a5249;font-size:13px;text-align:center;padding:10px}
+
+/* contacts, footer */
+.contacts{text-align:center}
+.contacts .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;text-align:center;color:var(--muted);font-size:13px}
+
+@media (max-width:760px){
+  .item{grid-template-columns:1fr;gap:24px}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a class="logo" href="#"><img src="img/logo-word.png" alt="Саранчук" id="logoImg"><small id="logoSub"></small></a>
+    <button class="sbtn" id="sbtn" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    <div class="langs" id="langs"></div>
+  </div>
+  <div class="sbar" id="sbar"><div class="wrap"><input id="sinput" type="search" autocomplete="off"><button id="sclose" aria-label="Close">×</button></div></div>
+</header>
+
+<div class="drawer" id="drawer">
+  <div class="shade" data-close></div>
+  <nav>
+    <button class="x" data-close aria-label="Close">×</button>
+    <h3 data-t="allCats"></h3>
+    <div id="menuList"></div>
+  </nav>
+</div>
+
+<main id="app"></main>
+<div class="zoom" id="zoom"><img alt=""><button aria-label="Close">×</button></div>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script>
+/* ====== НАЛАШТУВАННЯ ====== */
+const WHATSAPP = "380997358254";            // номер у міжнародному форматі без «+», напр. "40712345678"
+const TELEGRAM = "+380997358254";            // нік без «@» — додамо пізніше
+const INSTAGRAM = "cerkovna_utvar_saranchuk";
+const SILVER_LINK = "https://saranchuk-arts.com";
+const PROCESS_VIDEOS = [ {src:"img/process-eskiz-1.jpg", step:0}, {src:"img/process-nabir-video-1.mp4", poster:"img/process-nabir-video-1.jpg", step:2}, {src:"img/process-nabir-2.jpg", step:2}, {src:"img/process-nabir-1.jpg", step:2}, {src:"img/process-paika-video-1.mp4", poster:"img/process-paika-video-1.jpg", step:3}, {src:"img/process-paika-2.jpg", step:3}, {src:"img/process-paika-1.jpg", step:3}, {src:"img/process-paika-3.jpg", step:3}, {src:"img/process-hotovyi-1.jpg", step:5}, {src:"img/process-pakuvannia-1.jpg", step:6} ];   // step: 0 ескіз, 1 скручування, 2 набір узору, 3 пайка, 4 вставка каміння, 5 готовий виріб; .mp4 — відео
+const RESTORATION = ["img/restavratsiia-1.jpg","img/restavratsiia-2.jpg","img/restavratsiia-3.jpg","img/restavratsiia-4.jpg","img/restavratsiia-5.jpg","img/restavratsiia-6.jpg","img/restavratsiia-7.jpg","img/restavratsiia-8.jpg"];        // фото «до і після»
+const REVIEWS = ["img/vidhuk-01.jpg","img/vidhuk-02.jpg","img/vidhuk-03.jpg","img/vidhuk-04.jpg","img/vidhuk-05.jpg","img/vidhuk-06.jpg","img/vidhuk-07.jpg","img/vidhuk-08.jpg","img/vidhuk-09.jpg","img/vidhuk-10.jpg","img/vidhuk-11.jpg","img/vidhuk-12.jpg","img/vidhuk-13.jpg","img/vidhuk-14.jpg","img/vidhuk-15.jpg","img/vidhuk-16.jpg","img/vidhuk-17.jpg","img/vidhuk-18.jpg","img/vidhuk-19.jpg","img/vidhuk-20.jpg","img/vidhuk-21.jpg","img/vidhuk-22.jpg","img/vidhuk-23.jpg"];            // скріншоти відгуків і фото розпаковок
+const INSTA_PHOTOS = [];       // вибрані фото для блоку Instagram     // відео «Як народжується виріб» — блок з'явиться, коли додамо файли
+
+/* ====== ГРУПИ ТА РОЗДІЛИ ====== */
+const GROUPS = [
+ {id:"krosy", n:{uk:"Наперсні хрести та панагії",en:"Pectoral crosses & panagias",ro:"Cruci pectorale și panaghii"}, s:[
+  ["naperstni-khresty","Наперсні хрести","Pectoral crosses","Cruci pectorale"],
+  ["khresty-moshchovyky","Наперсні хрести-мощовики","Reliquary pectoral crosses","Cruci pectorale-relicvar"],
+  ["panahii","Панагії","Panagias","Panaghii"],
+  ["khresty-na-mytru","Хрести на митру","Mitre crosses","Cruci pentru mitră"],
+  ["khresty-na-klobuk","Хрести на клобук","Klobuk crosses","Cruci pentru camilafcă"],
+  ["lantsiuzhky","Ланцюжки для хрестів та панагій","Chains for crosses & panagias","Lanțuri pentru cruci și panaghii"]]},
+ {id:"ikony", n:{uk:"Ікони",en:"Icons",ro:"Icoane"}, s:[
+  ["ikony-v-okladi","Ікони в срібному окладі","Icons in a silver cover","Icoane îmbrăcate în argint"],
+  ["sribni-ikony","Срібні ікони","Silver icons","Icoane din argint"],
+  ["dorozhni-ikony","Дорожні ікони","Travel icons","Icoane de călătorie"],
+  ["avtomobilni-ikony","Автомобільні ікони","Car icons","Icoane auto"]]},
+ {id:"kovchehy", n:{uk:"Ковчеги та мощовики",en:"Reliquaries",ro:"Racle și relicvarii"}, s:[
+  ["moshchovyky-dlia-ikon","Мощовики для ікон","Reliquaries for icons","Relicvarii pentru icoane"],
+  ["moshchovyky-kovchehy","Мощовики-ковчеги","Ark reliquaries","Racle-chivot"],
+  ["tablychky","Таблички для мощовиків","Reliquary name plates","Plăcuțe pentru relicvarii"]]},
+ {id:"nachynnia", n:{uk:"Храмове начиння",en:"Church utensils",ro:"Obiecte liturgice"}, s:[
+  ["yevkharystychni-nabory","Євхаристичні набори","Eucharistic sets","Seturi euharistice"],
+  ["lzhytsi","Лжиці","Communion spoons","Linguri de împărtășanie"],
+  ["nabory-dlia-zapyvky","Набори для запивки","Ablution sets","Seturi pentru după împărtășanie"],
+  ["darokhranytelnytsi","Дарохранительниці","Tabernacles","Chivote"],
+  ["daronosytsi","Дароносиці","Pyxes","Artofoare"],
+  ["oklady-yevanheliie","Оклади на Євангеліє","Gospel covers","Ferecături pentru Evanghelie"],
+  ["kadyla","Кадила","Censers","Cădelnițe"],
+  ["lampady","Лампади","Vigil lamps","Candele"],
+  ["pidsvichnyky","Підсвічники","Candlesticks","Sfeșnice"],
+  ["naprestolni-khresty","Напрестольні хрести","Altar crosses","Cruci de altar"],
+  ["litiinytsi","Літійниці","Litiya sets","Litiere"],
+  ["hleky","Глеки для вина","Wine jugs","Carafe pentru vin"]]},
+ {id:"osviachennia", n:{uk:"Освячення",en:"Blessing",ro:"Sfințire"}, s:[
+  ["kropyla","Кропила","Aspergills","Stropitori pentru agheasmă"],
+  ["yeleinytsi","Єлейниці","Holy oil vessels","Vase pentru untdelemn sfințit"],
+  ["pliashky-sviata-voda","Пляшки для святої води","Holy water bottles","Sticle pentru agheasmă"],
+  ["stakany-sviata-voda","Стакани для святої води","Holy water cups","Pahare pentru agheasmă"],
+  ["khresty-osviachennia","Хрести для освячення води","Crosses for the blessing of water","Cruci pentru sfințirea apei"]]},
+ {id:"sviashchenstvo", n:{uk:"Для священства",en:"For the clergy",ro:"Pentru cler"}, s:[
+  ["zaponky","Запонки","Cufflinks","Butoni"],
+  ["gudzyky","Гудзики для облачення","Vestment buttons","Nasturi pentru veșminte"],
+  ["priazhky","Пряжки для поясів","Belt buckles","Catarame pentru brâu"],
+  ["posokhy","Посохи та жезли","Pastoral staffs & croziers","Cârje și toiege"],
+  ["chotky","Чотки та хрестики для чоток","Prayer ropes & their crosses","Metanii și cruciulițe pentru metanii"],
+  ["enkolpiony","Енколпіони","Encolpia","Engolpioane"]]},
+ {id:"tainstva", n:{uk:"Таїнства",en:"Sacraments",ro:"Taine"}, s:[
+  ["vintsi","Вінці для вінчання","Wedding crowns","Cununii"],
+  ["vinchalni-ikony","Вінчальні ікони","Wedding icons","Icoane de cununie"],
+  ["nabory-khreshchennia","Набори для хрещення","Baptism sets","Seturi de botez"]]},
+ {id:"podarunky", n:{uk:"Подарунки та авторські роботи",en:"Gifts & signature works",ro:"Cadouri și lucrări de autor"}, s:[
+  ["zakladky","Закладки для книг","Bookmarks","Semne de carte"],
+  ["avtorski-roboty","Авторські роботи","Signature works","Lucrări de autor"],
+  ["zaponky","Запонки","Cufflinks","Butoni"]]}
+];
+
+/* ====== ВИРОБИ ======
+   section — id розділу; isNew + added — для «Новинок» (позначка тримається 2 місяці) */
+const ITEMS = [
+ {id:"naperstnyi-khrest-1", art:"KR-001", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/naperstnyi-khrest-1.jpg"],
+  name:{uk:"Наперсний хрест",en:"Pectoral cross",ro:"Cruce pectorală"},
+  metal:{uk:"Срібло 950, частково позолочене",en:"Silver 950, partially gilded",ro:"Argint 950, parțial aurit"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті 585 (14K) чи з іншим кольором каміння",en:"Can be made in 585 (14K) gold or with stones of another colour",ro:"Poate fi realizată în aur 585 (14K) sau cu pietre de altă culoare"},
+  price:null},
+ {id:"nabir-dlia-zapyvky-1", art:"HN-001", section:"nabory-dlia-zapyvky", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/nabir-zapyvka-1-1.jpg","img/nabir-zapyvka-1-2.jpg","img/nabir-zapyvka-1-3.jpg"],
+  name:{uk:"Набір для запивки",en:"Ablution set",ro:"Set pentru după împărtășanie"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Піднос на дерев'яній основі",en:"Tray with a wooden base",ro:"Tavă cu bază din lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті чи з іншим кольором каміння",en:"Can be made in gold or with stones of another colour",ro:"Poate fi realizat în aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"naperstnyi-khrest-derevo-1", art:"KR-002", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/khrest-derevo-1-1.jpg","img/khrest-derevo-1-2.jpg","img/khrest-derevo-1-3.jpg"],
+  name:{uk:"Наперсний хрест з дерев'яною основою та перлинами",en:"Pectoral cross with wooden base and pearls",ro:"Cruce pectorală cu bază din lemn și perle"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Натуральні перлини",en:"Natural pearls",ro:"Perle naturale"},
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті чи з іншим камінням",en:"Can be made in gold or with other stones",ro:"Poate fi realizată în aur sau cu alte pietre"},
+  price:null},
+ {id:"darokhranytelnytsia-1", art:"HN-002", section:"darokhranytelnytsi", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/darokhranytelnytsia-1-1.jpg","img/darokhranytelnytsia-1-2.jpg","img/darokhranytelnytsia-1-3.jpg"],
+  name:{uk:"Дарохранительниця",en:"Tabernacle",ro:"Chivot"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Підставка з дерева",en:"Wooden stand",ro:"Suport din lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити з позолотою чи з іншим кольором каміння",en:"Can be made with gilding or with stones of another colour",ro:"Poate fi realizat cu aurire sau cu pietre de altă culoare"},
+  price:null},
+ {id:"litiinytsia-1", art:"HN-003", section:"litiinytsi", hero:true, added:"2026-10-30", isNew:true,
+  photos:["img/litiinytsia-1.jpg"],
+  name:{uk:"Літійниця",en:"Litiya set",ro:"Litier"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити з позолотою чи з іншим кольором каміння",en:"Can be made with gilding or with stones of another colour",ro:"Poate fi realizat cu aurire sau cu pietre de altă culoare"},
+  price:null},
+ {id:"kropylo-1", art:"OS-001", section:"kropyla", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/kropylo-1-1.jpg","img/kropylo-1-2.jpg","img/kropylo-1-3.jpg"],
+  name:{uk:"Кропило",en:"Aspergillum",ro:"Stropitoare pentru agheasmă"},
+  metal:{uk:"Срібло 950 з елементами позолоти",en:"Silver 950 with gilded elements",ro:"Argint 950 cu elemente aurite"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"yeleinytsia-1", art:"OS-002", section:"yeleinytsi", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/yeleinytsia-1-1.jpg","img/yeleinytsia-1-2.jpg"],
+  name:{uk:"Єлейниця",en:"Holy oil vessel",ro:"Vas pentru untdelemn sfințit"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Скляний флакон, змінний",en:"Glass vial, replaceable",ro:"Flacon de sticlă, înlocuibil"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"naperstnyi-khrest-2", art:"KR-003", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/naperstnyi-khrest-2-1.jpg","img/naperstnyi-khrest-2-2.jpg","img/naperstnyi-khrest-2-3.jpg"],
+  name:{uk:"Наперсний хрест з ланцюжком",en:"Pectoral cross with chain",ro:"Cruce pectorală cu lanț"},
+  metal:{uk:"Срібло 950, частково позолочене",en:"Silver 950, partially gilded",ro:"Argint 950, parțial aurit"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"stakan-sviata-voda-1", art:"OS-003", section:"stakany-sviata-voda", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/stakan-sviata-voda-1.jpg"],
+  name:{uk:"Стакан для святої води",en:"Holy water cup",ro:"Pahar pentru agheasmă"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:null,
+  size:{uk:"Об'єм 35 мл",en:"Volume 35 ml",ro:"Volum 35 ml"},
+  options:{uk:"Можливо виготовити з елементами з золота чи з гравіюванням",en:"Can be made with solid gold elements or with an engraving",ro:"Poate fi realizat cu elemente din aur sau cu gravură"},
+  price:null},
+ {id:"oklad-yevanheliie-1", art:"HN-004", section:"oklady-yevanheliie", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/oklad-yevanheliie-1-1.jpg","img/oklad-yevanheliie-1-2.jpg"],
+  name:{uk:"Оклад на Євангеліє",en:"Gospel cover",ro:"Ferecătură pentru Evanghelie"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"khrest-na-mytru-1", art:"KR-004", section:"khresty-na-mytru", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/khrest-na-mytru-1-1.jpg","img/khrest-na-mytru-1-2.jpg"],
+  name:{uk:"Хрест на митру",en:"Mitre cross",ro:"Cruce pentru mitră"},
+  metal:{uk:"Срібло 950, частково позолочене",en:"Silver 950, partially gilded",ro:"Argint 950, parțial aurit"},
+  stones:{uk:"Фіаніти гранатового кольору",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"naperstnyi-khrest-derevo-2", art:"KR-005", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/khrest-derevo-2-1.jpg","img/khrest-derevo-2-2.jpg","img/khrest-derevo-2-3.jpg","img/khrest-derevo-2-4.jpg"],
+  name:{uk:"Наперсний хрест з дерев'яною основою та ланцюжком «бісмарк»",en:"Pectoral cross with wooden base and Bismarck chain",ro:"Cruce pectorală cu bază din lemn și lanț Bismarck"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору аметист",en:"Amethyst-coloured cubic zirconia",ro:"Zirconii de culoarea ametistului"},
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"lzhytsia-1", art:"HN-005", section:"lzhytsi", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/lzhytsia-1-1.jpg","img/lzhytsia-1-2.jpg","img/lzhytsia-1-3.jpg","img/lzhytsia-1-4.jpg"],
+  name:{uk:"Лжиця",en:"Communion spoon",ro:"Linguriță de împărtășanie"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Малахіт",en:"Malachite",ro:"Malahit"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим камінням",en:"Can be made with solid gold elements or with other stones",ro:"Poate fi realizată cu elemente din aur sau cu alte pietre"},
+  price:null},
+ {id:"panahiia-1", art:"KR-006", section:"panahii", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/panahiia-1-1.jpg","img/panahiia-1-2.jpg"],
+  name:{uk:"Панагія з образом Богородиці «Покрова»",en:"Panagia with the Protection of the Mother of God",ro:"Panaghie cu icoana Acoperământul Maicii Domnului"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  image:{uk:"Вирізаний з кістки",en:"Carved from bone",ro:"Sculptată în os"},
+  stones:{uk:"Фіаніти кольору сапфір",en:"Sapphire-coloured cubic zirconia",ro:"Zirconii de culoarea safirului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"moshchovyk-1", art:"MS-001", section:"moshchovyky-dlia-ikon", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-1.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925, частково позолочене",en:"Silver 925, partially gilded",ro:"Argint 925, parțial aurit"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"moshchovyk-2", art:"MS-002", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-2.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:null,
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizat cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"moshchovyk-3", art:"MS-003", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-3.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"moshchovyk-4", art:"MS-004", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-4.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:null,
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizat cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"moshchovyk-5", art:"MS-005", section:"moshchovyky-dlia-ikon", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-5.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"moshchovyk-6", art:"MS-006", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-6-1.jpg","img/moshchovyk-6-2.jpg","img/moshchovyk-6-3.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат, смарагд чи сапфір — на вибір",en:"Cubic zirconia in garnet, emerald or sapphire colour — your choice",ro:"Zirconii de culoarea granatului, smaraldului sau safirului — la alegere"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота",en:"Can be made with solid gold elements",ro:"Poate fi realizat cu elemente din aur"},
+  price:null},
+ {id:"moshchovyk-7", art:"MS-007", section:"moshchovyky-dlia-ikon", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-7-1.jpg","img/moshchovyk-7-2.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат чи аквамарин — на вибір",en:"Cubic zirconia in garnet or aquamarine colour — your choice",ro:"Zirconii de culoarea granatului sau acvamarinului — la alegere"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота",en:"Can be made with solid gold elements",ro:"Poate fi realizat cu elemente din aur"},
+  price:null},
+ {id:"moshchovyk-8", art:"MS-008", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-8-1.jpg","img/moshchovyk-8-2.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:null,
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizat cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"moshchovyk-9", art:"MS-009", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-9-1.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925, позолочене",en:"Silver 925, gilded",ro:"Argint 925, aurit"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"moshchovyk-10", art:"MS-010", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-10-1.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"moshchovyk-11", art:"MS-011", section:"moshchovyky-dlia-ikon", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/moshchovyk-11-1.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:null,
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizat cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"panahiia-2", art:"KR-007", section:"panahii", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/panahiia-2-1.jpg","img/panahiia-2-2.jpg","img/panahiia-2-3.jpg"],
+  name:{uk:"Панагія з образом Богородиці «Покрова»",en:"Panagia with the Protection of the Mother of God",ro:"Panaghie cu icoana Acoperământul Maicii Domnului"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"panahiia-3", art:"KR-008", section:"panahii", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/panahiia-3-1.jpg"],
+  name:{uk:"Панагія",en:"Panagia",ro:"Panaghie"},
+  metal:{uk:"Срібло 925 з елементами з золота 585 (14K)",en:"Silver 925 with 585 (14K) gold elements",ro:"Argint 925 cu elemente din aur 585 (14K)"},
+  stones:{uk:"Фіаніти кольору аквамарин",en:"Aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea acvamarinului"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті 750 (18K) чи з іншим кольором каміння",en:"Can be made in 750 (18K) gold or with stones of another colour",ro:"Poate fi realizată în aur 750 (18K) sau cu pietre de altă culoare"},
+  price:null},
+ {id:"yeleinytsia-2", art:"OS-004", section:"yeleinytsi", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/yeleinytsia-2-1.jpg","img/yeleinytsia-2-2.jpg"],
+  name:{uk:"Єлейниця з пензликом",en:"Holy oil vessel with brush",ro:"Vas pentru untdelemn sfințit cu pensulă"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"naperstnyi-khrest-derevo-3", art:"KR-009", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/naperstnyi-khrest-derevo-3-1.jpg"],
+  name:{uk:"Наперсний хрест з дерев'яною основою",en:"Pectoral cross with wooden base",ro:"Cruce pectorală cu bază din lemn"},
+  metal:{uk:"Срібло 950 з елементами з золота 585 (14K)",en:"Silver 950 with 585 (14K) gold elements",ro:"Argint 950 cu elemente din aur 585 (14K)"},
+  stones:{uk:"Фіаніти кольору аметист",en:"Amethyst-coloured cubic zirconia",ro:"Zirconii de culoarea ametistului"},
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті 750 (18K) чи з іншим кольором каміння",en:"Can be made in 750 (18K) gold or with stones of another colour",ro:"Poate fi realizată în aur 750 (18K) sau cu pietre de altă culoare"},
+  price:null},
+ {id:"lampada-1", art:"HN-006", section:"lampady", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/lampada-1-1.jpg"],
+  name:{uk:"Лампада",en:"Vigil lamp",ro:"Candelă"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору аквамарин",en:"Aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea acvamarinului"},
+  base:{uk:"Скляна вставка",en:"Glass insert",ro:"Pahar din sticlă"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"hlek-1", art:"HN-007", section:"hleky", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/hlek-1-1.jpg"],
+  name:{uk:"Глек для вина",en:"Wine jug",ro:"Carafă pentru vin"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:null,
+  base:{uk:"Скло",en:"Glass",ro:"Sticlă"},
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizată cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"lampada-2", art:"HN-008", section:"lampady", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/lampada-2-1.jpg","img/lampada-2-2.jpg"],
+  name:{uk:"Лампада",en:"Vigil lamp",ro:"Candelă"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Стакан з червоного скла",en:"Red glass cup",ro:"Pahar din sticlă roșie"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння та скла",en:"Can be made with solid gold elements or with stones and glass of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre și sticlă de altă culoare"},
+  price:null},
+ {id:"naperstnyi-khrest-kistka-1", art:"KR-010", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/naperstnyi-khrest-kistka-1-1.jpg","img/naperstnyi-khrest-kistka-1-2.jpg","img/naperstnyi-khrest-kistka-1-3.jpg"],
+  name:{uk:"Наперсний хрест з різьбленим розп'яттям з кістки",en:"Pectoral cross with carved bone crucifix",ro:"Cruce pectorală cu răstignire sculptată în os"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  image:{uk:"Розп'яття вирізане з кістки",en:"Crucifix carved from bone",ro:"Răstignire sculptată în os"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"lampada-3", art:"HN-009", section:"lampady", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/lampada-3-1.jpg","img/lampada-3-2.jpg"],
+  name:{uk:"Лампада",en:"Vigil lamp",ro:"Candelă"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:null,
+  base:{uk:"Стакан з червоного скла",en:"Red glass cup",ro:"Pahar din sticlă roșie"},
+  size:null,
+  options:{uk:"Можливо виготовити з камінням, з елементами з золота чи з іншим кольором скла",en:"Can be made with stones, solid gold elements or glass of another colour",ro:"Poate fi realizată cu pietre, elemente din aur sau sticlă de altă culoare"},
+  price:null},
+ {id:"kovcheh-1", art:"MS-012", section:"moshchovyky-kovchehy", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/kovcheh-1-1.jpg"],
+  name:{uk:"Мощовик-ковчег з іконою святого великомученика Георгія",en:"Ark reliquary with an icon of St George",ro:"Raclă-chivot cu icoana Sfântului Mare Mucenic Gheorghe"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Скринька з мореного дуба",en:"Bog oak case",ro:"Cutie din stejar băițuit"},
+  size:null,
+  options:{uk:"Можливо виготовити з іконою іншого святого, з елементами з золота чи з іншим кольором каміння",en:"Can be made with an icon of another saint, with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu icoana altui sfânt, cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"ikona-1", art:"IK-001", section:"ikony-v-okladi", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/ikona-1-1.jpg"],
+  name:{uk:"Ікона святої благовірної княгині Анни Кашинської",en:"Icon of St Anna of Kashin",ro:"Icoana Sfintei Ana de Kașin"},
+  metal:{uk:"Срібло 950 — філігранний німб і кути",en:"Silver 950 — filigree halo and corners",ro:"Argint 950 — nimb și colțuri din filigran"},
+  image:{uk:"Мальована ікона (ручне письмо)",en:"Hand-painted icon",ro:"Icoană pictată manual"},
+  stones:null,
+  size:null,
+  options:{uk:"Можливо виготовити з іконою будь-якого святого, з камінням чи з елементами з золота",en:"Can be made with an icon of any saint, with stones or with solid gold elements",ro:"Poate fi realizată cu icoana oricărui sfânt, cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"ikona-2", art:"IK-002", section:"ikony-v-okladi", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/ikona-2-1.jpg"],
+  name:{uk:"Ікона святої мучениці Дарії",en:"Icon of the Holy Martyr Daria",ro:"Icoana Sfintei Mucenițe Daria"},
+  metal:{uk:"Срібло 950 — філігранний німб і кути",en:"Silver 950 — filigree halo and corners",ro:"Argint 950 — nimb și colțuri din filigran"},
+  image:{uk:"Мальована ікона (ручне письмо)",en:"Hand-painted icon",ro:"Icoană pictată manual"},
+  stones:null,
+  size:null,
+  options:{uk:"Можливо виготовити з іконою будь-якого святого, з камінням чи з елементами з золота",en:"Can be made with an icon of any saint, with stones or with solid gold elements",ro:"Poate fi realizată cu icoana oricărui sfânt, cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"naperstnyi-khrest-rozpiattia-derevo", art:"KR-011", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/naperstnyi-khrest-rozpiattia-derevo-1.jpg"],
+  name:{uk:"Наперсний хрест з різьбленим дерев'яним розп'яттям",en:"Pectoral cross with carved wooden crucifix",ro:"Cruce pectorală cu răstignire sculptată în lemn"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  image:{uk:"Розп'яття вирізане з дерева",en:"Crucifix carved from wood",ro:"Răstignire sculptată în lemn"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"khrest-spas-1", art:"KR-012", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/khrest-spas-1.jpg"],
+  name:{uk:"Хрест з образом Спасителя",en:"Cross with the image of the Saviour",ro:"Cruce cu chipul Mântuitorului"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"khrest-na-mytru-2", art:"KR-013", section:"khresty-na-mytru", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/khrest-na-mytru-2-1.jpg","img/khrest-na-mytru-2-2.jpg"],
+  name:{uk:"Хрест на митру",en:"Mitre cross",ro:"Cruce pentru mitră"},
+  metal:{uk:"Срібло 950, частково позолочене",en:"Silver 950, partially gilded",ro:"Argint 950, parțial aurit"},
+  stones:{uk:"Фіаніти кольору смарагд",en:"Emerald-coloured cubic zirconia",ro:"Zirconii de culoarea smaraldului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"kovcheh-2", art:"MS-013", section:"moshchovyky-kovchehy", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/kovcheh-2-1.jpg"],
+  name:{uk:"Мощовик-ковчег з іконою святителя Миколая Чудотворця",en:"Ark reliquary with an icon of St Nicholas the Wonderworker",ro:"Raclă-chivot cu icoana Sfântului Ierarh Nicolae"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Скринька з дуба з різьбленням",en:"Carved oak case",ro:"Cutie din stejar sculptat"},
+  size:null,
+  options:{uk:"Можливо виготовити з іконою іншого святого, з елементами з золота чи з іншим кольором каміння",en:"Can be made with an icon of another saint, with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu icoana altui sfânt, cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"kovcheh-3", art:"MS-014", section:"moshchovyky-kovchehy", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/kovcheh-3-1.jpg"],
+  name:{uk:"Мощовик-ковчег з іконою святого великомученика Георгія",en:"Ark reliquary with an icon of St George",ro:"Raclă-chivot cu icoana Sfântului Mare Mucenic Gheorghe"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Скринька з дуба",en:"Oak case",ro:"Cutie din stejar"},
+  size:null,
+  options:{uk:"Можливо виготовити з іконою іншого святого, з елементами з золота чи з іншим кольором каміння",en:"Can be made with an icon of another saint, with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu icoana altui sfânt, cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"naperstnyi-khrest-perly", art:"KR-014", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/naperstnyi-khrest-perly-1.jpg"],
+  name:{uk:"Наперсний хрест з перлинами та філігранним ланцюгом",en:"Pectoral cross with pearls and filigree chain",ro:"Cruce pectorală cu perle și lanț din filigran"},
+  metal:{uk:"Срібло 950, позолочене",en:"Silver 950, gilded",ro:"Argint 950, aurit"},
+  stones:{uk:"Перлини",en:"Pearls",ro:"Perle"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим камінням",en:"Can be made with solid gold elements or with other stones",ro:"Poate fi realizată cu elemente din aur sau cu alte pietre"},
+  price:null},
+ {id:"khrest-spas-2", art:"KR-015", section:"naperstni-khresty", hero:false, added:"2026-10-30", isNew:false,
+  photos:["img/khrest-spas-2.jpg"],
+  name:{uk:"Хрест з образом Спаса Вседержителя",en:"Cross with Christ Pantocrator",ro:"Cruce cu Hristos Pantocrator"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"khrest-spas-3", art:"KR-016", section:"naperstni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/khrest-spas-3.jpg"],
+  name:{uk:"Хрест з образом Спаса Вседержителя, гладкий",en:"Cross with Christ Pantocrator, polished",ro:"Cruce cu Hristos Pantocrator, lustruită"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору аквамарин",en:"Aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea acvamarinului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"chotky-1", art:"SV-001", section:"chotky", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/chotky-1.jpg"],
+  name:{uk:"Чотки з образом святого великомученика Георгія",en:"Prayer bracelet with St George",ro:"Metanii cu Sfântul Mare Mucenic Gheorghe"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:null,
+  base:{uk:"Шовковий шнур",en:"Silk cord",ro:"Șnur de mătase"},
+  size:null,
+  options:{uk:"Можливо виготовити з образами інших святих чи з елементами з золота",en:"Can be made with images of other saints or with solid gold elements",ro:"Pot fi realizate cu chipurile altor sfinți sau cu elemente din aur"},
+  price:null},
+ {id:"yaitse-1", art:"PD-001", section:"avtorski-roboty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/yaitse-1.jpg"],
+  name:{uk:"Срібне яйце з квітами",en:"Silver egg with flowers",ro:"Ou din argint cu flori"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору смарагд",en:"Emerald-coloured cubic zirconia",ro:"Zirconii de culoarea smaraldului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"lampada-4", art:"HN-010", section:"lampady", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/lampada-4-1.jpg"],
+  name:{uk:"Лампада «Кошик квітів»",en:"Vigil lamp “Flower basket”",ro:"Candelă „Coș cu flori”"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат і аквамарин",en:"Garnet- and aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea granatului și acvamarinului"},
+  base:{uk:"Стакан із синього скла",en:"Blue glass cup",ro:"Pahar din sticlă albastră"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння та скла",en:"Can be made with solid gold elements or with stones and glass of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre și sticlă de altă culoare"},
+  price:null},
+ {id:"naprestolnyi-khrest-1", art:"HN-011", section:"naprestolni-khresty", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/naprestolnyi-khrest-1.jpg"],
+  name:{uk:"Напрестольний хрест для поклоніння",en:"Altar cross for veneration",ro:"Cruce de altar pentru închinare"},
+  metal:{uk:"Срібло 950 — німб, перизома, табличка, обрамлення та мощовик",en:"Silver 950 — halo, loincloth, title plate, border and reliquary",ro:"Argint 950 — nimb, perizomă, tăbliță, chenar și relicvar"},
+  image:{uk:"Різьблене дерев'яне розп'яття",en:"Carved wooden crucifix",ro:"Răstignire sculptată în lemn"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  desc:{uk:"Хрест для поклоніння. У святкові дні його виносять на середину храму й покладають на аналой, щоб вірні могли прикластися до Розп'яття.",en:"A cross for veneration. On feast days it is brought out to the centre of the church and laid on the analogion so that the faithful may venerate the Crucifixion.",ro:"Cruce pentru închinare. În zilele de sărbătoare se scoate în mijlocul bisericii și se așază pe analog, pentru ca credincioșii să se închine Răstignirii."},
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"zaponky-1", art:"SV-002", section:"zaponky", hero:true, added:"2026-10-30", isNew:false,
+  photos:["img/zaponky-1.jpg"],
+  name:{uk:"Запонки",en:"Cufflinks",ro:"Butoni"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Pot fi realizați cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"khrest-na-klobuk-1", art:"KR-017", section:"khresty-na-klobuk", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/khrest-na-klobuk-1-1.jpg","img/khrest-na-klobuk-1-2.jpg","img/khrest-na-klobuk-1-3.jpg"],
+  name:{uk:"Хрест на клобук",en:"Klobuk cross",ro:"Cruce pentru camilafcă"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Безбарвні фіаніти",en:"Colourless cubic zirconia",ro:"Zirconii incolore"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з кольоровим камінням",en:"Can be made with solid gold elements or with coloured stones",ro:"Poate fi realizată cu elemente din aur sau cu pietre colorate"},
+  price:null},
+ {id:"panahiia-4", art:"KR-018", section:"panahii", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/panahiia-4-1.jpg"],
+  name:{uk:"Панагія з образом Богородиці «Всецариця»",en:"Panagia with the Mother of God “Pantanassa”",ro:"Panaghie cu icoana Maicii Domnului „Pantanassa”"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  image:{uk:"Різьблений дерев'яний образ, філігранні німби",en:"Carved wooden image with filigree halos",ro:"Icoană sculptată în lemn, nimburi din filigran"},
+  stones:{uk:"Перлини",en:"Pearls",ro:"Perle"},
+  size:null,
+  options:{uk:"Можливо виготовити з іншим образом, з елементами з золота чи з іншим камінням",en:"Can be made with another image, with solid gold elements or with other stones",ro:"Poate fi realizată cu altă icoană, cu elemente din aur sau cu alte pietre"},
+  price:null},
+ {id:"naperstnyi-khrest-vynohrad", art:"KR-019", section:"naperstni-khresty", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/naperstnyi-khrest-vynohrad-1.jpg"],
+  name:{uk:"Наперсний хрест з виноградною лозою",en:"Pectoral cross with grapevine",ro:"Cruce pectorală cu viță-de-vie"},
+  metal:{uk:"Срібло 950, частково позолочене",en:"Silver 950, partially gilded",ro:"Argint 950, parțial aurit"},
+  stones:{uk:"Фіаніти кольору аквамарин",en:"Aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea acvamarinului"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"lampada-5", art:"HN-012", section:"lampady", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/lampada-5-1.jpg","img/lampada-5-2.jpg"],
+  name:{uk:"Лампада-яйце з лавровим вінком",en:"Egg-shaped vigil lamp with laurel wreath",ro:"Candelă în formă de ou cu cunună de lauri"},
+  metal:{uk:"Срібло 950 з елементами з золота 750 (18K)",en:"Silver 950 with 750 (18K) gold elements",ro:"Argint 950 cu elemente din aur 750 (18K)"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Стакан з червоного скла",en:"Red glass cup",ro:"Pahar din sticlă roșie"},
+  size:null,
+  options:{uk:"Можливо виготовити з іншим кольором каміння та скла",en:"Can be made with stones and glass of another colour",ro:"Poate fi realizată cu pietre și sticlă de altă culoare"},
+  price:null},
+ {id:"naperstnyi-khrest-perlamutr", art:"KR-020", section:"naperstni-khresty", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/naperstnyi-khrest-perlamutr-1.jpg","img/naperstnyi-khrest-perlamutr-2.jpg"],
+  name:{uk:"Наперсний хрест з перламутром та філігранним ланцюгом",en:"Pectoral cross with mother-of-pearl and filigree chain",ro:"Cruce pectorală cu sidef și lanț din filigran"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:null,
+  base:{uk:"Перламутр",en:"Mother-of-pearl",ro:"Sidef"},
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizată cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"tablychky-1", art:"MS-015", section:"tablychky", hero:false, added:"2026-10-31", isNew:false,
+  photos:["img/tablychky-1.jpg"],
+  name:{uk:"Таблички для мощовиків з іменами святих",en:"Reliquary name plates",ro:"Plăcuțe cu numele sfinților pentru relicvarii"},
+  metal:{uk:"Нержавіюча сталь, лазерне гравіювання",en:"Stainless steel, laser engraving",ro:"Oțel inoxidabil, gravură cu laser"},
+  stones:null,
+  size:null,
+  options:{uk:"Гравіюємо ім'я будь-якого святого. Можливо виготовити у сріблі",en:"We engrave the name of any saint. Can also be made in silver",ro:"Gravăm numele oricărui sfânt. Pot fi realizate și din argint"},
+  price:null},
+ {id:"posokh-1", art:"SV-003", section:"posokhy", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/posokh-1-1.jpg","img/posokh-1-2.jpg"],
+  name:{uk:"Посох з ангелами",en:"Pastoral staff with angels",ro:"Cârjă cu îngeri"},
+  metal:{uk:"Срібло 950 з елементами з золота 585 (14K)",en:"Silver 950 with 585 (14K) gold elements",ro:"Argint 950 cu elemente din aur 585 (14K)"},
+  stones:{uk:"Фіаніти кольору аметист",en:"Amethyst-coloured cubic zirconia",ro:"Zirconii de culoarea ametistului"},
+  base:{uk:"Дуб",en:"Oak",ro:"Stejar"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті 750 (18K), з іншим кольором каміння чи з іншим написом",en:"Can be made in 750 (18K) gold, with stones of another colour or with a different inscription",ro:"Poate fi realizată în aur 750 (18K), cu pietre de altă culoare sau cu altă inscripție"},
+  price:null},
+ {id:"vintsi-1", art:"TN-001", section:"vintsi", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/vintsi-1-1.jpg","img/vintsi-1-2.jpg","img/vintsi-1-3.jpg"],
+  name:{uk:"Вінці для вінчання",en:"Wedding crowns",ro:"Cununii"},
+  metal:{uk:"Срібло 925",en:"Silver 925",ro:"Argint 925"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з іншими образами, з елементами з золота чи з іншим кольором каміння",en:"Can be made with other icons, with solid gold elements or with stones of another colour",ro:"Pot fi realizate cu alte icoane, cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"ikona-3", art:"IK-003", section:"ikony-v-okladi", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/ikona-3-1.jpg"],
+  name:{uk:"Ікона святителя Миколая Чудотворця в срібному убранстві",en:"Icon of St Nicholas the Wonderworker in silver adornment",ro:"Icoana Sfântului Ierarh Nicolae în podoabă de argint"},
+  metal:{uk:"Срібло 950 — філігранний німб і обрамлення",en:"Silver 950 — filigree halo and frame",ro:"Argint 950 — nimb și ramă din filigran"},
+  stones:{uk:"Фіаніти кольору смарагд",en:"Emerald-coloured cubic zirconia",ro:"Zirconii de culoarea smaraldului"},
+  size:null,
+  options:{uk:"Можливо виготовити срібне убранство для ікони будь-якого святого, з елементами з золота чи з іншим кольором каміння",en:"A silver adornment can be made for an icon of any saint, with solid gold elements or with stones of another colour",ro:"Se poate realiza podoabă de argint pentru icoana oricărui sfânt, cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"khrest-osviachennia-1", art:"OS-005", section:"khresty-osviachennia", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/khrest-osviachennia-1.jpg"],
+  name:{uk:"Хрест для освячення води",en:"Cross for the blessing of water",ro:"Cruce pentru sfințirea apei"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:null,
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizată cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"zhezl-1", art:"SV-004", section:"posokhy", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/zhezl-1.jpg"],
+  name:{uk:"Архієрейський жезл",en:"Bishop's crozier",ro:"Cârjă arhierească"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору аквамарин",en:"Aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea acvamarinului"},
+  base:{uk:"Дуб",en:"Oak",ro:"Stejar"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"kropylo-2", art:"OS-006", section:"kropyla", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/kropylo-2-1.jpg"],
+  name:{uk:"Кропило з дубовою ручкою",en:"Aspergillum with oak handle",ro:"Stropitoare cu mâner din stejar"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:null,
+  base:{uk:"Дуб",en:"Oak",ro:"Stejar"},
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з елементами з золота",en:"Can be made with stones or with solid gold elements",ro:"Poate fi realizat cu pietre sau cu elemente din aur"},
+  price:null},
+ {id:"yaitse-2", art:"PD-002", section:"avtorski-roboty", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/yaitse-2-1.jpg","img/yaitse-2-2.jpg","img/yaitse-2-3.jpg"],
+  name:{uk:"Яйце для паникадила",en:"Ostrich egg for a church chandelier",ro:"Ou pentru policandru"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Страусине яйце",en:"Ostrich egg",ro:"Ou de struț"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizat cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"nimby-1", art:"IK-004", section:"ikony-v-okladi", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/nimby-1-1.jpg","img/nimby-1-2.jpg","img/nimby-1-3.jpg","img/nimby-1-4.jpg"],
+  name:{uk:"Філігранні німби для ікони Богородиці «Всецариця»",en:"Filigree halos for the icon of the Mother of God “Pantanassa”",ro:"Nimburi din filigran pentru icoana Maicii Domnului „Pantanassa”"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Виготовляємо німби для будь-якої ікони, зокрема для ваших власних. Можливо з елементами з золота чи з іншим кольором каміння",en:"We make halos for any icon, including your own. Possible with solid gold elements or with stones of another colour",ro:"Realizăm nimburi pentru orice icoană, inclusiv pentru icoanele dumneavoastră. Este posibil cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"ikona-5", art:"IK-005", section:"ikony-v-okladi", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/ikona-5-1.jpg","img/ikona-5-2.jpg"],
+  name:{uk:"Ікона святого великомученика Георгія зі срібним німбом",en:"Icon of St George with a silver halo",ro:"Icoana Sfântului Mare Mucenic Gheorghe cu nimb de argint"},
+  metal:{uk:"Срібло 950 — філігранний німб",en:"Silver 950 — filigree halo",ro:"Argint 950 — nimb din filigran"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити з іконою будь-якого святого, з елементами з золота чи з іншим кольором каміння",en:"Can be made with an icon of any saint, with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu icoana oricărui sfânt, cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"khrest-klienta-1", art:"KR-021", section:"naperstni-khresty", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/khrest-klienta-1.jpg"],
+  name:{uk:"Старовинний дерев'яний хрест у срібному обрамленні",en:"Antique wooden cross in a silver setting",ro:"Cruce veche din lemn în montură de argint"},
+  desc:{uk:"Старовинний різьблений хрест клієнта, який ми прикрасили сріблом: філігранне обрамлення з ангелами, німб і вушко з образом Спаса Нерукотворного.",en:"A client's antique carved cross that we adorned with silver: a filigree setting with angels, a halo and a bail with the image of the Saviour Not Made by Hands.",ro:"Crucea veche sculptată a unui client, pe care am împodobit-o cu argint: montură din filigran cu îngeri, nimb și toartă cu chipul Mântuitorului Nefăcut de mână."},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору аметист",en:"Amethyst-coloured cubic zirconia",ro:"Zirconii de culoarea ametistului"},
+  base:{uk:"Різьблене дерево — хрест клієнта",en:"Carved wood — the client's own cross",ro:"Lemn sculptat — crucea clientului"},
+  size:null,
+  options:{uk:"Прикрасимо сріблом і ваш хрест чи ікону, з елементами з золота чи з іншим кольором каміння",en:"We can adorn your own cross or icon with silver, with solid gold elements or with stones of another colour",ro:"Putem împodobi cu argint și crucea sau icoana dumneavoastră, cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"posokh-2", art:"SV-005", section:"posokhy", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/posokh-2-1.jpg"],
+  name:{uk:"Посох з малахітом",en:"Pastoral staff with malachite",ro:"Cârjă cu malahit"},
+  metal:{uk:"Срібло 950 з елементами з золота 585 (14K)",en:"Silver 950 with 585 (14K) gold elements",ro:"Argint 950 cu elemente din aur 585 (14K)"},
+  stones:{uk:"Малахіт",en:"Malachite",ro:"Malahit"},
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті 750 (18K) чи з іншим камінням",en:"Can be made in 750 (18K) gold or with other stones",ro:"Poate fi realizată în aur 750 (18K) sau cu alte pietre"},
+  price:null},
+ {id:"yevkharystychnyi-1", art:"HN-013", section:"yevkharystychni-nabory", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/yevkharystychnyi-1.jpg"],
+  name:{uk:"Євхаристичний набір",en:"Eucharistic set",ro:"Set euharistic"},
+  desc:{uk:"До набору входять потир, дискос зі звіздицею та лжиця.",en:"The set includes a chalice, a diskos with an asterisk and a communion spoon.",ro:"Setul cuprinde potir, disc cu steluță și linguriță de împărtășanie."},
+  metal:{uk:"Срібло 950 з елементами з золота 585 (14K)",en:"Silver 950 with 585 (14K) gold elements",ro:"Argint 950 cu elemente din aur 585 (14K)"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті 750 (18K), з іншими образами чи з іншим кольором каміння",en:"Can be made in 750 (18K) gold, with other images or with stones of another colour",ro:"Poate fi realizat în aur 750 (18K), cu alte chipuri sau cu pietre de altă culoare"},
+  price:null},
+ {id:"ikona-6", art:"IK-006", section:"ikony-v-okladi", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/ikona-6-1.jpg","img/ikona-6-2.jpg"],
+  name:{uk:"Срібний німб та лампада для ікони святого мученика Іоанна Сучавського",en:"Silver halo and vigil lamp for the icon of the Holy Martyr John of Suceava",ro:"Nimb de argint și candelă pentru icoana Sfântului Mucenic Ioan cel Nou de la Suceava"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Лампада з червоним скляним стаканом",en:"Vigil lamp with red glass cup",ro:"Candelă cu pahar din sticlă roșie"},
+  size:null,
+  options:{uk:"Виготовляємо німби та лампади для будь-якої ікони, зокрема храмової. Можливо з елементами з золота чи з іншим кольором каміння",en:"We make halos and vigil lamps for any icon, including church icons. Possible with solid gold elements or with stones of another colour",ro:"Realizăm nimburi și candele pentru orice icoană, inclusiv pentru icoanele din biserică. Este posibil cu elemente din aur sau cu pietre de altă culoare"},
+  price:null},
+ {id:"naprestolnyi-khrest-2", art:"HN-014", section:"naprestolni-khresty", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/naprestolnyi-khrest-2-1.jpg","img/naprestolnyi-khrest-2-2.jpg","img/naprestolnyi-khrest-2-3.jpg","img/naprestolnyi-khrest-2-4.jpg"],
+  name:{uk:"Хрест для поклоніння з різьбленим розп'яттям",en:"Cross for veneration with carved crucifix",ro:"Cruce pentru închinare cu răstignire sculptată"},
+  desc:{uk:"Хрест для поклоніння. У святкові дні його виносять на середину храму й покладають на аналой, щоб вірні могли прикластися до Розп'яття.",en:"A cross for veneration. On feast days it is brought out to the centre of the church and laid on the analogion so that the faithful may venerate the Crucifixion.",ro:"Cruce pentru închinare. În zilele de sărbătoare se scoate în mijlocul bisericii și se așază pe analog, pentru ca credincioșii să se închine Răstignirii."},
+  metal:{uk:"Срібло 950 з елементами з золота 750 (18K)",en:"Silver 950 with 750 (18K) gold elements",ro:"Argint 950 cu elemente din aur 750 (18K)"},
+  image:{uk:"Різьблене дерев'яне розп'яття",en:"Carved wooden crucifix",ro:"Răstignire sculptată în lemn"},
+  stones:null,
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з іншим оздобленням",en:"Can be made with stones or with other decoration",ro:"Poate fi realizată cu pietre sau cu alt decor"},
+  price:null},
+ {id:"moshchovyk-16", art:"MS-016", section:"moshchovyky-dlia-ikon", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/moshchovyk-16-1.jpg"],
+  name:{uk:"Мощовик для ікони",en:"Icon reliquary",ro:"Relicvar pentru icoană"},
+  metal:{uk:"Срібло 950 з елементами з золота 585 (14K)",en:"Silver 950 with 585 (14K) gold elements",ro:"Argint 950 cu elemente din aur 585 (14K)"},
+  stones:{uk:"Фіаніти кольору аквамарин",en:"Aquamarine-coloured cubic zirconia",ro:"Zirconii de culoarea acvamarinului"},
+  size:null,
+  options:{uk:"Можливо виготовити в золоті 750 (18K) чи з іншим кольором каміння",en:"Can be made in 750 (18K) gold or with stones of another colour",ro:"Poate fi realizat în aur 750 (18K) sau cu pietre de altă culoare"},
+  price:null},
+ {id:"naprestolnyi-khrest-3", art:"HN-015", section:"naprestolni-khresty", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/naprestolnyi-khrest-3-1.jpg","img/naprestolnyi-khrest-3-2.jpg"],
+  name:{uk:"Хрест для поклоніння у філігранному обрамленні",en:"Cross for veneration in a filigree setting",ro:"Cruce pentru închinare în montură din filigran"},
+  desc:{uk:"Хрест для поклоніння. У святкові дні його виносять на середину храму й покладають на аналой, щоб вірні могли прикластися до Розп'яття.",en:"A cross for veneration. On feast days it is brought out to the centre of the church and laid on the analogion so that the faithful may venerate the Crucifixion.",ro:"Cruce pentru închinare. În zilele de sărbătoare se scoate în mijlocul bisericii și se așază pe analog, pentru ca credincioșii să se închine Răstignirii."},
+  metal:{uk:"Срібло 950 з елементами з золота 750 (18K)",en:"Silver 950 with 750 (18K) gold elements",ro:"Argint 950 cu elemente din aur 750 (18K)"},
+  image:{uk:"Різьблене дерев'яне розп'яття",en:"Carved wooden crucifix",ro:"Răstignire sculptată în lemn"},
+  stones:null,
+  base:{uk:"Дерево",en:"Wood",ro:"Lemn"},
+  size:null,
+  options:{uk:"Можливо виготовити з камінням чи з іншим оздобленням",en:"Can be made with stones or with other decoration",ro:"Poate fi realizată cu pietre sau cu alt decor"},
+  price:null},
+ {id:"zhezl-2", art:"SV-006", section:"posokhy", hero:true, added:"2026-10-31", isNew:false,
+  photos:["img/zhezl-2-1.jpg"],
+  name:{uk:"Жезл з гранатами",en:"Crozier with garnets",ro:"Cârjă cu granate"},
+  metal:{uk:"Срібло 950",en:"Silver 950",ro:"Argint 950"},
+  stones:{uk:"Фіаніти кольору гранат",en:"Garnet-coloured cubic zirconia",ro:"Zirconii de culoarea granatului"},
+  base:{uk:"Дуб",en:"Oak",ro:"Stejar"},
+  size:null,
+  options:{uk:"Можливо виготовити з елементами з золота чи з іншим кольором каміння",en:"Can be made with solid gold elements or with stones of another colour",ro:"Poate fi realizată cu elemente din aur sau cu pietre de altă culoare"},
+  price:null}
+];
+
+/* ====== ТЕКСТИ ====== */
+const T = {
+uk:{
+ logo:"Саранчук", logoSub:"ювелірна майстерня",
+ allCats:"Усі категорії", sPh:"Пошук: назва чи артикул", sRes:"Результати пошуку", sNone:"Нічого не знайдено. Напишіть нам — можливо, ми виготовимо саме те, що ви шукаєте.", h1:"Філігрань ручної роботи", h1sub:"Кожен виріб неповторний",
+ remark:"Кожен наш виріб створюється вручну, тому двох однакових не буває. Ми постійно вдосконалюємо майстерність, і ваш виріб може відрізнятися від фото в деталях — він буде саме вашим.",
+ processT:"Як народжується виріб", process:["Розробка ескізу","Скручування дроту","Набір узору","Пайка","Вставка каміння","Готовий виріб","Пакування"],
+ catalogT:"Каталог", newT:"Новинки", newBadge:"Новинка", items:"виробів",
+ orderT:"Як замовити", steps:["Напишіть нам будь-якою зручною для вас мовою","Погоджуємо деталі","Доставляємо по всьому світу з гарантією"],
+ terms:"Терміни виготовлення індивідуальні й залежать від складності виробу, тому ми домовляємося про них заздалегідь.",
+ giftT:"Подарунок священнику", giftLead:"Шукаєте особливий подарунок для священника? Виріб ручної роботи зі срібла стане пам'ятним знаком вашої вдячності.",
+ gifts:[["Ювілей","Наперсний хрест, панагія чи ікона в срібному окладі на згадку про важливу дату."],["Хіротонія чи нагородження","Хрест на митру, посох чи енколпіон для нового служіння."],["Іменини","Ікона святого покровителя, запонки чи чотки."]],
+ aboutT:"Про майстерню", about:["Ми сімейна майстерня, і з 2015 року створюємо церковне начиння та прикраси для священнослужителів. Кожен виріб робимо вручну зі срібла чи золота, у техніці філіграні, де узор складається з найтоншого скрученого дроту. Ми дотримуємося православних канонів у формі, символіці та іконографії.","Ми працюємо з парафіями й людьми з різних країн і доставляємо вироби по всьому світу."],
+ restT:"Реставрація", rest:"Ми реставруємо не лише власні вироби, а й старовинні речі зі срібла та золота. Відновлюємо філігрань, чистимо й золотимо, міняємо втрачене каміння. Ось кілька робіт до і після.",
+ revT:"Відгуки", faqT:"Питання та відповіді",
+ faq:[
+  ["Чи можна позолотити виріб?","Так, повністю або частково, а колір каміння ви теж обираєте самі. Проте позолота з часом стирається: залежно від того, як носити виріб, вона тримається від кількох місяців до кількох років. Тому гарантії на позолоту ми не даємо, але завжди можемо оновити її за окрему плату. Ми радимо інше рішення, яке стало нашою фішкою: поєднання срібла з елементами з чистого золота. Золото не стирається і служить вам усе життя."],
+  ["Як доглядати за сріблом?","Срібло природно темніє з часом. Протирайте виріб м'якою фланеллю, а для глибшого чищення звертайтеся до нас. Ми почистимо його делікатно, щоб не пошкодити філігрань і позолоту. Бережіть виріб від хлорованої води, парфумів і побутової хімії, а зберігайте окремо, в закритій коробочці."],
+  ["Чи можна замовити виріб за власним ескізом?","Так, ми охоче працюємо за вашою ідеєю. Надсилайте ескіз від руки, фото, приклад з інтернету чи готову 3D-модель. Ми адаптуємо задум під філігрань і виготовимо виріб у сріблі чи золоті."],
+  ["Які розміри хрестів і ланцюжків?","Середня довжина ієрейського наперсного хреста разом з підвісами 12–13 см, але ми виготовимо й менший чи більший. Стандартна довжина ланцюжка 80, 110 чи 120 см, а на замовлення зробимо будь-яку."],
+  ["Яка гарантія на вироби?","На кожен виріб діє рік безкоштовного гарантійного обслуговування. Після цього ми теж залюбки доглядаємо за вашими виробами: ремонтуємо, міняємо каміння, реставруємо й оновлюємо."],
+  ["Як відбувається доставка?","Ми доставляємо вироби по всьому світу. Спосіб і вартість доставки погоджуємо з вами окремо, щоб вибрати найзручніший і найнадійніший варіант."],
+  ["Чи можна додати гравіювання?","Так, ми робимо лазерне гравіювання. На звороті хреста чи на іншому виробі можемо вигравіювати ім'я, дату чи пам'ятний напис, щоб подарунок став ще особистішим."],
+  ["Чи робите ви вироби не у філіграні?","Так. Церковне начиння ми виготовляємо також в інших техніках, тож напишіть нам, і ми розповімо, що можемо запропонувати. А хрестики, шнурки та ланцюжки на кожен день ви знайдете в нашому іншому проєкті Filigree Arts, на {link}."]],
+ contactsT:"Напишіть нам", ask:"Запитати про виріб", back:"Назад", home:"Головна",
+ fArt:"Артикул", fMetal:"Метал", fImage:"Образ", fBase:"Основа", fStones:"Каміння", fSize:"Розмір", fOptions:"Варіанти",
+ priceOnReq:"Ціна за запитом", priceFrom:"Від",
+ priceNote:"Ціни орієнтовні. Остаточна вартість залежить від ціни металу та обраних деталей — уточнюйте при замовленні.",
+ soon:"незабаром", empty:"У цьому розділі вироби з'являться незабаром. Напишіть нам — ми виготовимо під ваше замовлення.",
+ wa:(n,l)=>`Добрий день! Мене цікавить виріб "${n}". Підкажіть, будь ласка, деталі.\n${l}`,
+ copy:"© 2026 Саранчук — ювелірна майстерня"
+},
+en:{
+ logo:"Saranchuk", logoSub:"jewellery workshop",
+ allCats:"All categories", sPh:"Search: name or item no.", sRes:"Search results", sNone:"Nothing found. Write to us — we may be able to make exactly what you are looking for.", h1:"Handmade filigree", h1sub:"Every piece is one of a kind",
+ remark:"Each of our pieces is made by hand, so no two are ever alike. We keep refining our craft, and your piece may differ from the photo in details — it will be truly yours.",
+ processT:"How a piece is born", process:["Designing the sketch","Twisting the wire","Building the pattern","Soldering","Setting the stones","The finished piece","Packaging"],
+ catalogT:"Catalogue", newT:"New arrivals", newBadge:"New", items:"pieces",
+ orderT:"How to order", steps:["Write to us in any language you like","We agree on the details","We deliver worldwide, with a warranty"],
+ terms:"Production times are individual and depend on the complexity of the piece, so we agree on them in advance.",
+ giftT:"A gift for a priest", giftLead:"Looking for a special gift for a priest? A handmade silver piece will be a lasting token of your gratitude.",
+ gifts:[["Anniversary","A pectoral cross, a panagia or an icon in a silver cover to mark an important date."],["Ordination or award","A mitre cross, a staff or an encolpion for a new ministry."],["Name day","An icon of the patron saint, cufflinks or a prayer rope."]],
+ aboutT:"About the workshop", about:["We are a family workshop, and since 2015 we have been making church utensils and accessories for the clergy. Every piece is made by hand from silver or gold in the filigree technique, where the pattern is built from the finest twisted wire. We follow Orthodox canons in form, symbolism and iconography.","We work with parishes and people from many countries and deliver worldwide."],
+ restT:"Restoration", rest:"We restore not only our own pieces but also antique silver and gold items. We repair filigree, clean and gild, and replace lost stones. Here are some works before and after.",
+ revT:"Reviews", faqT:"Questions & answers",
+ faq:[
+  ["Can a piece be gilded?","Yes, fully or partially, and you also choose the colour of the stones. However, gilding wears off over time: depending on how the piece is worn, it lasts from a few months to a few years. That is why we do not give a warranty on gilding, but we can always renew it for a separate fee. We recommend another solution that has become our signature: silver combined with elements of solid gold. Gold does not wear off and will serve you for a lifetime."],
+  ["How should I care for silver?","Silver naturally darkens over time. Wipe the piece with a soft flannel cloth, and for deeper cleaning bring it to us. We will clean it gently so as not to damage the filigree and gilding. Keep the piece away from chlorinated water, perfume and household chemicals, and store it separately in a closed box."],
+  ["Can I order a piece from my own sketch?","Yes, we are happy to work from your idea. Send a hand sketch, a photo, an example from the internet or a ready 3D model. We will adapt the idea to filigree and make the piece in silver or gold."],
+  ["What sizes are crosses and chains?","A priest's pectoral cross is on average 12–13 cm long including the pendants, but we can make it smaller or larger. Standard chain lengths are 80, 110 or 120 cm, and we can make any length to order."],
+  ["What is the warranty?","Every piece comes with one year of free warranty service. After that we are still glad to look after your pieces: we repair, replace stones, restore and renew them."],
+  ["How does delivery work?","We deliver worldwide. We agree on the delivery method and cost with you individually to choose the most convenient and reliable option."],
+  ["Can you add an engraving?","Yes, we do laser engraving. On the back of a cross or on another piece we can engrave a name, a date or a memorable inscription to make the gift even more personal."],
+  ["Do you make pieces other than filigree?","Yes. We also make church utensils in other techniques, so write to us and we will tell you what we can offer. Everyday crosses, cords and chains can be found in our other project, Filigree Arts, at {link}."]],
+ contactsT:"Write to us", ask:"Ask about this piece", back:"Back", home:"Home",
+ fArt:"Item no.", fMetal:"Metal", fImage:"Image", fBase:"Base", fStones:"Stones", fSize:"Size", fOptions:"Options",
+ priceOnReq:"Price on request", priceFrom:"From",
+ priceNote:"Prices are approximate. The final cost depends on the price of metal and the chosen details — please confirm when ordering.",
+ soon:"coming soon", empty:"Pieces in this section are coming soon. Write to us and we will make one to your order.",
+ wa:(n,l)=>`Hello! I am interested in the piece "${n}". Could you please tell me more?\n${l}`,
+ copy:"© 2026 Saranchuk — jewellery workshop"
+},
+ro:{
+ logo:"Saranchuk", logoSub:"atelier de bijuterii",
+ allCats:"Toate categoriile", sPh:"Căutare: denumire sau cod", sRes:"Rezultatele căutării", sNone:"Nu am găsit nimic. Scrieți-ne — poate realizăm exact ce căutați.", h1:"Filigran lucrat manual", h1sub:"Fiecare piesă este unică",
+ remark:"Fiecare piesă a noastră este lucrată manual, de aceea nu există două identice. Ne perfecționăm continuu meșteșugul, iar piesa dumneavoastră poate diferi de fotografie în detalii — va fi cu adevărat a dumneavoastră.",
+ processT:"Cum se naște o piesă", process:["Realizarea schiței","Răsucirea firului","Compunerea modelului","Lipirea","Montarea pietrelor","Piesa finită","Ambalarea"],
+ catalogT:"Catalog", newT:"Noutăți", newBadge:"Nou", items:"piese",
+ orderT:"Cum comandați", steps:["Scrieți-ne în orice limbă vă este comod","Stabilim împreună detaliile","Livrăm în toată lumea, cu garanție"],
+ terms:"Termenele de execuție sunt individuale și depind de complexitatea piesei, de aceea le stabilim din timp.",
+ giftT:"Un dar pentru preot", giftLead:"Căutați un dar deosebit pentru un preot? O piesă din argint lucrată manual va fi un semn durabil al recunoștinței dumneavoastră.",
+ gifts:[["Aniversare","O cruce pectorală, o panaghie sau o icoană îmbrăcată în argint, în amintirea unei date importante."],["Hirotonie sau distincție","O cruce pentru mitră, o cârjă sau un engolpion pentru o nouă slujire."],["Ziua onomastică","O icoană a sfântului ocrotitor, butoni sau metanii."]],
+ aboutT:"Despre atelier", about:["Suntem un atelier de familie și din 2015 realizăm obiecte liturgice și accesorii pentru clerici. Fiecare piesă este lucrată manual din argint sau aur, în tehnica filigranului, în care modelul se compune din cel mai fin fir răsucit. Respectăm canoanele ortodoxe în formă, simbolistică și iconografie.","Lucrăm cu parohii și oameni din multe țări și livrăm în toată lumea."],
+ restT:"Restaurare", rest:"Restaurăm nu doar propriile piese, ci și obiecte vechi din argint și aur. Refacem filigranul, curățăm și aurim, înlocuim pietrele pierdute. Iată câteva lucrări înainte și după.",
+ revT:"Recenzii", faqT:"Întrebări și răspunsuri",
+ faq:[
+  ["Se poate auri piesa?","Da, integral sau parțial, iar culoarea pietrelor o alegeți tot dumneavoastră. Totuși, aurirea se șterge în timp: în funcție de cum este purtată piesa, rezistă de la câteva luni la câțiva ani. De aceea nu oferim garanție pentru aurire, dar o putem reînnoi oricând contra cost. Vă recomandăm o altă soluție, care a devenit semnătura atelierului nostru: argint îmbinat cu elemente din aur masiv. Aurul nu se șterge și vă va sluji toată viața."],
+  ["Cum se îngrijește argintul?","Argintul se închide la culoare în mod natural cu timpul. Ștergeți piesa cu o flanelă moale, iar pentru o curățare mai profundă adresați-vă nouă. O vom curăța delicat, ca să nu deteriorăm filigranul și aurirea. Feriți piesa de apa clorinată, parfum și substanțe de uz casnic și păstrați-o separat, într-o cutiuță închisă."],
+  ["Pot comanda o piesă după propria schiță?","Da, lucrăm cu plăcere după ideea dumneavoastră. Trimiteți o schiță de mână, o fotografie, un exemplu de pe internet sau un model 3D gata făcut. Adaptăm ideea pentru filigran și realizăm piesa în argint sau aur."],
+  ["Ce dimensiuni au crucile și lanțurile?","O cruce pectorală preoțească are în medie 12–13 cm lungime, împreună cu pandantivele, dar o putem face și mai mică sau mai mare. Lungimile standard ale lanțului sunt 80, 110 sau 120 cm, iar la comandă realizăm orice lungime."],
+  ["Ce garanție oferiți?","Fiecare piesă beneficiază de un an de service gratuit în garanție. După aceea ne îngrijim în continuare, cu drag, de piesele dumneavoastră: le reparăm, înlocuim pietrele, le restaurăm și le reînnoim."],
+  ["Cum are loc livrarea?","Livrăm în toată lumea. Modalitatea și costul livrării le stabilim separat cu dumneavoastră, pentru a alege varianta cea mai comodă și mai sigură."],
+  ["Se poate adăuga o gravură?","Da, realizăm gravură cu laser. Pe spatele crucii sau pe altă piesă putem grava un nume, o dată sau o inscripție memorabilă, ca darul să fie și mai personal."],
+  ["Realizați și piese care nu sunt din filigran?","Da. Obiecte liturgice realizăm și în alte tehnici, așa că scrieți-ne și vă spunem ce vă putem oferi. Cruciulițe, șnururi și lanțuri de zi cu zi găsiți în celălalt proiect al nostru, Filigree Arts, pe {link}."]],
+ contactsT:"Scrieți-ne", ask:"Întrebați despre piesă", back:"Înapoi", home:"Acasă",
+ fArt:"Cod produs", fMetal:"Metal", fImage:"Icoana", fBase:"Bază", fStones:"Pietre", fSize:"Dimensiune", fOptions:"Variante",
+ priceOnReq:"Preț la cerere", priceFrom:"De la",
+ priceNote:"Prețurile sunt orientative. Costul final depinde de prețul metalului și de detaliile alese — vă rugăm să-l confirmați la comandă.",
+ soon:"în curând", empty:"Piesele din această secțiune apar în curând. Scrieți-ne și o realizăm la comandă.",
+ wa:(n,l)=>`Bună ziua! Mă interesează piesa „${n}”. Vă rog să-mi spuneți mai multe detalii.\n${l}`,
+ copy:"© 2026 Saranchuk — atelier de bijuterii"
+}};
+
+/* ====== ЛОГІКА ====== */
+const LI = {uk:1,en:2,ro:3};
+let lang = "uk";
+try{ const s = localStorage.getItem("lang"); if(T[s]) lang = s; }catch(e){}
+const t = k => T[lang][k];
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const SECTIONS = {};
+GROUPS.forEach(g => g.s.forEach(s => { if(!SECTIONS[s[0]]) SECTIONS[s[0]] = {id:s[0], n:s, groups:[]}; SECTIONS[s[0]].groups.push(g); }));
+const secName = id => SECTIONS[id].n[LI[lang]];
+const itemsIn = sid => ITEMS.filter(i => i.section === sid);
+const itemsInGroup = g => ITEMS.filter(i => g.s.some(s => s[0] === i.section));
+const isNew = i => { if(!i.isNew) return false; const d = (Date.now() - new Date(i.added)) / 864e5; return d <= 61; };
+
+function itemCard(i){
+  return `<a class="it" href="#item-${i.id}">${isNew(i)?`<span class="new">${t("newBadge")}</span>`:""}
+   <img src="${i.photos[0]}" alt="${esc(i.name[lang])}" loading="lazy"><p>${esc(i.name[lang])}</p><small>${i.art} · ${esc(i.metal[lang])}</small></a>`;
+}
+
+function photoGrid(list){
+  return list.length?`<div class="ph-grid">${list.map(src=>`<div style="padding:0"><img src="${src}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;background:#0d0d0c"></div>`).join("")}</div>`:"";
+}
+
+/* карусель: по черзі з різних груп, у кожній групі найновіші першими */
+function mixHero(){
+  const byGroup = {};
+  ITEMS.filter(i=>i.hero).reverse().forEach(i=>{ const g = i.art.split("-")[0]; (byGroup[g] = byGroup[g] || []).push(i); });
+  const order = ["KR","HN","OS","IK","SV","TN","PD","MS"];
+  const queues = order.filter(g=>byGroup[g]).map(g=>byGroup[g]), out = [];
+  while(queues.some(q=>q.length)) queues.forEach(q=>{ if(q.length) out.push(q.shift()); });
+  return out;
+}
+
+function home(){
+  const hero = mixHero();
+  const news = ITEMS.filter(isNew);
+  return `
+  <section class="hero"><div class="wrap">
+    <h1>${t("h1")}</h1><div class="sub">${t("h1sub")}</div>
+    <div class="carousel"><div class="track ${hero.length<2?"single":""}">
+      ${hero.map(i=>`<a class="slide" href="#item-${i.id}"><img src="${i.photos[0]}" alt="${esc(i.name[lang])}"><p>${esc(i.name[lang])}</p></a>`).join("")}
+    </div></div>
+    <p class="remark">${t("remark")}</p>
+  </div></section>
+
+  ${PROCESS_VIDEOS.length?`<section><div class="wrap">
+    <h2>${t("processT")}</h2><div class="rule"></div>
+    <div class="pvids">${PROCESS_VIDEOS.slice().sort((a,b)=>a.step-b.step).map(v=>`<figure class="pstep">${/\.(mp4|webm|mov)$/i.test(v.src)?`<video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} muted autoplay loop playsinline preload="metadata"></video>`:`<img src="${v.src}" alt="${t("process")[v.step]}" loading="lazy">`}<figcaption><span>${v.step+1}</span>${t("process")[v.step]}</figcaption></figure>`).join("")}</div>
+  </div></section>`:""}
+
+  <section id="catalog"><div class="wrap">
+    <div class="eyebrow">01</div><h2>${t("catalogT")}</h2><div class="rule"></div>
+    <div class="tiles">${GROUPS.map(g=>{const its=itemsInGroup(g);return `
+      <a class="tile" href="#group-${g.id}">${its[0]?`<img src="${its[0].photos[0]}" alt="" loading="lazy">`:`<div class="ph">✦</div>`}
+      <div class="cap"><b>${g.n[lang]}</b><small>${its.length} ${t("items")}</small></div></a>`}).join("")}
+    </div>
+  </div></section>
+
+  ${news.length?`<section><div class="wrap"><h2>${t("newT")}</h2><div class="rule"></div><div class="items">${news.map(itemCard).join("")}</div></div></section>`:""}
+
+
+  <section><div class="wrap">
+    <div class="eyebrow">02</div><h2>${t("orderT")}</h2><div class="rule"></div>
+    <div class="steps">${t("steps").map(s=>`<div class="step">${s}</div>`).join("")}</div>
+    <p class="terms">${t("terms")}</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2>${t("giftT")}</h2><div class="rule"></div>
+    <p class="lead">${t("giftLead")}</p>
+    <div class="occ">${t("gifts").map(g=>`<div><h3>${g[0]}</h3><p>${g[1]}</p></div>`).join("")}</div>
+  </div></section>
+
+  <section class="about"><div class="wrap about-grid">
+    <div><h2>${t("aboutT")}</h2><div class="rule"></div>
+    ${t("about").map(p=>`<p>${p}</p>`).join("")}</div>
+    <video class="maister" src="img/maister.mp4" poster="img/maister.jpg" muted autoplay loop playsinline preload="metadata"></video>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2>${t("restT")}</h2><div class="rule"></div><p class="lead">${t("rest")}</p>
+    ${RESTORATION.length?`<div class="rest">${RESTORATION.map(src=>`<img src="${src}" alt="${t("restT")}" loading="lazy" data-zoom="${src}">`).join("")}</div>`:""}
+  </div></section>
+
+  ${REVIEWS.length?`<section><div class="wrap">
+    <h2>${t("revT")}</h2><div class="rule"></div>
+    <div class="revs">${REVIEWS.map(src=>`<img src="${src}" alt="${t("revT")}" loading="lazy" data-zoom="${src}">`).join("")}</div>
+  </div></section>`:""}
+
+  <section class="faq"><div class="wrap">
+    <h2>${t("faqT")}</h2><div class="rule"></div>
+    ${t("faq").map((f,k)=>`<details class="${k===0?"hl":""}"><summary>${f[0]}</summary><p>${f[1].replace("{link}",`<a href="${SILVER_LINK}" target="_blank" rel="noopener" style="color:var(--bronze2)">saranchuk-arts.com</a>`)}</p></details>`).join("")}
+  </div></section>
+
+  ${contacts()}
+
+  ${INSTA_PHOTOS.length?`<section><div class="wrap">
+    <h2>Instagram</h2><div class="rule"></div>${photoGrid(INSTA_PHOTOS)}
+  </div></section>`:""}`;
+}
+
+function contacts(){
+  return `<section class="contacts" id="contacts"><div class="wrap">
+    <h2>${t("contactsT")}</h2><div class="rule" style="margin:14px auto 26px"></div>
+    <div class="row">
+      <a class="btn" href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a>
+      ${TELEGRAM?`<a class="btn ghost" href="https://t.me/${TELEGRAM}" target="_blank" rel="noopener">Telegram</a>`:""}
+      <a class="btn ghost" href="https://instagram.com/${INSTAGRAM}" target="_blank" rel="noopener">Instagram</a>
+    </div></div></section>`;
+}
+
+function groupPage(g, activeSec){
+  const secs = g.s.map(s=>s[0]);
+  const list = activeSec ? itemsIn(activeSec) : itemsInGroup(g);
+  return `<section style="border:0"><div class="wrap">
+    <div class="crumbs"><a href="#">${t("home")}</a> / ${activeSec?`<a href="#group-${g.id}">${g.n[lang]}</a>`:g.n[lang]}</div>
+    <h2>${activeSec?secName(activeSec):g.n[lang]}</h2><div class="rule"></div>
+    <div class="chips">${secs.map(s=>`<a class="${s===activeSec?"on":""}" href="#section-${s}">${secName(s)}</a>`).join("")}</div>
+    ${list.length?`<div class="items">${list.map(itemCard).join("")}</div>`:`<p class="empty">${t("empty")}</p>`}
+  </div></section>${contacts()}`;
+}
+
+function itemPage(i){
+  const sec = SECTIONS[i.section], g = sec.groups[0];
+  const url = location.href.split("#")[0] + "#item-" + i.id;
+  const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t("wa")(i.name[lang]+" ("+i.art+")", url))}`;
+  const price = i.price ? `${t("priceFrom")} ${i.price.toLocaleString("uk-UA")} грн` : t("priceOnReq");
+  return `<section style="border:0"><div class="wrap">
+    <div class="crumbs"><a href="#">${t("home")}</a> / <a href="#group-${g.id}">${g.n[lang]}</a> / <a href="#section-${sec.id}">${secName(sec.id)}</a></div>
+    <div class="item">
+      <div class="gal"><img id="big" src="${i.photos[0]}" alt="${esc(i.name[lang])}">
+        ${i.photos.length>1?`<div class="thumbs">${i.photos.map((p,k)=>`<img src="${p}" class="${k?"":"on"}" data-p="${p}" alt="">`).join("")}</div>`:""}
+      </div>
+      <div>
+        ${isNew(i)?`<div class="eyebrow">${t("newBadge")}</div>`:""}
+        <h1>${esc(i.name[lang])}</h1>
+        <div class="art">${t("fArt")}: ${i.art}</div>
+        ${i.desc?`<p class="desc">${esc(i.desc[lang])}</p>`:""}
+        <ul class="spec">
+          <li><em>${t("fMetal")}</em>${esc(i.metal[lang])}</li>
+          ${i.image?`<li><em>${t("fImage")}</em>${esc(i.image[lang])}</li>`:""}
+          ${i.stones?`<li><em>${t("fStones")}</em>${esc(i.stones[lang])}</li>`:""}
+          ${i.base?`<li><em>${t("fBase")}</em>${esc(i.base[lang])}</li>`:""}
+          ${i.size?`<li><em>${t("fSize")}</em>${esc(i.size[lang])}</li>`:""}
+          ${i.options?`<li><em>${t("fOptions")}</em>${esc(i.options[lang])}</li>`:""}
+        </ul>
+        <div class="price">${price}</div>
+        <p class="note">${t("priceNote")}</p>
+        <a class="btn" href="${wa}" target="_blank" rel="noopener">${t("ask")}</a>
+      </div>
+    </div>
+  </div></section>`;
+}
+
+function norm(x){ return String(x).toLowerCase().replace(/[’'ʼ`«»"“”„-]/g," ").replace(/\s+/g," ").trim(); }
+function searchItems(q){
+  const words = norm(q).split(" ").filter(Boolean);
+  if(!words.length) return [];
+  return ITEMS.filter(i=>{
+    const sec = SECTIONS[i.section].n;
+    const hay = norm([i.art, i.art.replace("-",""), i.name.uk,i.name.en,i.name.ro, sec[1],sec[2],sec[3],
+      i.metal.uk,i.metal.en,i.metal.ro, i.stones?Object.values(i.stones).join(" "):"" ].join(" "));
+    return words.every(w=>hay.includes(w));
+  });
+}
+function searchPage(q){
+  const list = searchItems(q);
+  return `<section style="border:0"><div class="wrap">
+    <div class="crumbs"><a href="#">${t("home")}</a> / ${t("sRes")}</div>
+    <h2>«${esc(q)}»</h2><div class="rule"></div>
+    ${list.length?`<div class="items">${list.map(itemCard).join("")}</div>`:`<p class="empty">${t("sNone")}</p>`}
+  </div></section>${contacts()}`;
+}
+
+function render(){
+  document.documentElement.lang = lang === "uk" ? "uk" : lang;
+  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));
+  $("#logoImg").alt = t("logo"); $("#logoSub").textContent = t("logoSub");
+  $("#langs").innerHTML = ["uk","en","ro"].map(l=>`<button class="${l===lang?"on":""}" data-l="${l}">${l==="uk"?"UA":l.toUpperCase()}</button>`).join("");
+  $("#menuList").innerHTML = GROUPS.map(g=>`<div class="g">${g.n[lang]}</div>${g.s.map(s=>`<a href="#section-${s[0]}">${s[LI[lang]]}</a>`).join("")}`).join("");
+  sinput.placeholder = t("sPh");
+  $("#foot").innerHTML = `<img class="flogo" src="img/logo-full.png" alt="${t("logo")}">${t("copy")}`;
+
+  const h = location.hash.slice(1);
+  let html;
+  if(h.startsWith("item-")){ const i = ITEMS.find(x=>x.id===h.slice(5)); html = i ? itemPage(i) : home(); }
+  else if(h.startsWith("group-")){ const g = GROUPS.find(x=>x.id===h.slice(6)); html = g ? groupPage(g) : home(); }
+  else if(h==="search" && searchQ){ html = searchPage(searchQ); }
+  else if(h.startsWith("section-")){ const s = SECTIONS[h.slice(8)]; html = s ? groupPage(s.groups[0], s.id) : home(); }
+  else html = home();
+  $("#app").innerHTML = html;
+  if(h && h!=="catalog" && h!=="contacts") window.scrollTo(0,0);
+  else if(h){ const el = document.getElementById(h); if(el) el.scrollIntoView(); }
+  document.querySelectorAll(".thumbs img").forEach(im=>im.onclick=()=>{
+    $("#big").src = im.dataset.p; document.querySelectorAll(".thumbs img").forEach(x=>x.classList.toggle("on",x===im));
+  });
+}
+
+let searchQ = "";
+const sbar = $("#sbar"), sinput = $("#sinput");
+$("#sbtn").onclick = ()=>{ sbar.classList.toggle("open"); if(sbar.classList.contains("open")){ sinput.placeholder = t("sPh"); sinput.focus(); } };
+$("#sclose").onclick = ()=>{ sbar.classList.remove("open"); sinput.value=""; if(location.hash==="#search") location.hash=""; };
+let st;
+sinput.addEventListener("input", ()=>{ clearTimeout(st); st = setTimeout(()=>{
+  searchQ = sinput.value.trim();
+  if(!searchQ){ if(location.hash==="#search") location.hash=""; return; }
+  if(location.hash!=="#search") location.hash="search"; else render();
+}, 250); });
+sinput.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); sinput.blur(); } });
+$("#langs").addEventListener("click", e=>{ const l = e.target.dataset.l; if(!l) return; lang = l; try{localStorage.setItem("lang",l)}catch(e){} render(); });
+const drawer = $("#drawer");
+$("#burger").onclick = ()=>drawer.classList.add("open");
+drawer.addEventListener("click", e=>{ if(e.target.dataset.close!==undefined || e.target.tagName==="A") drawer.classList.remove("open"); });
+window.addEventListener("hashchange", render);
+const zoom = $("#zoom");
+document.addEventListener("click", e=>{ const z = e.target.dataset && e.target.dataset.zoom; if(z){ zoom.querySelector("img").src = z; zoom.classList.add("open"); } });
+zoom.addEventListener("click", ()=>zoom.classList.remove("open"));
+render();
+</script>
+</body>
+</html>
