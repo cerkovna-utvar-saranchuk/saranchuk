@@ -153,6 +153,10 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 .price{font-family:var(--serif);font-size:26px;margin-top:8px}
 .note{font-size:13px;color:var(--muted);margin-top:6px}
 .btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--bronze);color:#111;text-decoration:none;padding:14px 26px;font-weight:600;font-size:15px;letter-spacing:.03em}
+.askrow{display:flex;gap:10px;flex-wrap:wrap}
+.askrow .btn{margin-top:12px;min-width:140px;justify-content:center}
+.asklabel{margin-top:22px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.asknote{font-size:13px;color:var(--bronze2);margin-top:8px}
 .btn:hover{background:var(--bronze2)}
 .btn.ghost{background:none;color:var(--text);border:1px solid var(--bronze)}
 
@@ -230,6 +234,7 @@ const WHATSAPP = "380997358254";            // номер у міжнародн�
 const TELEGRAM = "+380997358254";            // нік без «@» — додамо пізніше
 const INSTAGRAM = "cerkovna_utvar_saranchuk";
 const SILVER_LINK = "https://saranchuk-arts.com";
+const POPULAR = ["naperstnyi-khrest-1","panahiia-3","lampada-5","posokh-1","kovcheh-1","ikona-6"];   // «Популярні вироби» на головній
 const PROCESS_VIDEOS = [ {src:"img/process-eskiz-1.jpg", step:0}, {src:"img/process-nabir-video-1.mp4", poster:"img/process-nabir-video-1.jpg", step:2}, {src:"img/process-nabir-2.jpg", step:2}, {src:"img/process-nabir-1.jpg", step:2}, {src:"img/process-paika-video-1.mp4", poster:"img/process-paika-video-1.jpg", step:3}, {src:"img/process-paika-2.jpg", step:3}, {src:"img/process-paika-1.jpg", step:3}, {src:"img/process-paika-3.jpg", step:3}, {src:"img/process-hotovyi-1.jpg", step:5}, {src:"img/process-pakuvannia-1.jpg", step:6} ];   // step: 0 ескіз, 1 скручування, 2 набір узору, 3 пайка, 4 вставка каміння, 5 готовий виріб; .mp4 — відео
 const RESTORATION = ["img/restavratsiia-1.jpg","img/restavratsiia-2.jpg","img/restavratsiia-3.jpg","img/restavratsiia-4.jpg","img/restavratsiia-5.jpg","img/restavratsiia-6.jpg","img/restavratsiia-7.jpg","img/restavratsiia-8.jpg"];        // фото «до і після»
 const REVIEWS = ["img/vidhuk-01.jpg","img/vidhuk-02.jpg","img/vidhuk-03.jpg","img/vidhuk-04.jpg","img/vidhuk-05.jpg","img/vidhuk-06.jpg","img/vidhuk-07.jpg","img/vidhuk-08.jpg","img/vidhuk-09.jpg","img/vidhuk-10.jpg","img/vidhuk-11.jpg","img/vidhuk-12.jpg","img/vidhuk-13.jpg","img/vidhuk-14.jpg","img/vidhuk-15.jpg","img/vidhuk-16.jpg","img/vidhuk-17.jpg","img/vidhuk-18.jpg","img/vidhuk-19.jpg","img/vidhuk-20.jpg","img/vidhuk-21.jpg","img/vidhuk-22.jpg","img/vidhuk-23.jpg"];            // скріншоти відгуків і фото розпаковок
@@ -925,7 +930,7 @@ const ITEMS = [
 const T = {
 uk:{
  logo:"Саранчук", logoSub:"ювелірна майстерня",
- allCats:"Усі категорії", sPh:"Пошук: назва чи артикул", sRes:"Результати пошуку", sNone:"Нічого не знайдено. Напишіть нам — можливо, ми виготовимо саме те, що ви шукаєте.", h1:"Філігрань ручної роботи", h1sub:"Кожен виріб неповторний",
+ allCats:"Усі категорії", popT:"Популярні вироби", customT:"Індивідуальне виготовлення", customLead:"Кожен виріб ми створюємо під вас: обираєте метал, каміння, образ, довжину ланцюжка, гравіювання — або надсилаєте власний ескіз. Напишіть нам, і ми безкоштовно проконсультуємо.", consultMsg:"Добрий день! Хочу замовити виріб за індивідуальним задумом.", via:"Написати у", tgCopied:"Повідомлення скопійовано — вставте його в чат", sPh:"Пошук: назва чи артикул", sRes:"Результати пошуку", sNone:"Нічого не знайдено. Напишіть нам — можливо, ми виготовимо саме те, що ви шукаєте.", h1:"Філігрань ручної роботи", h1sub:"Кожен виріб неповторний",
  remark:"Кожен наш виріб створюється вручну, тому двох однакових не буває. Ми постійно вдосконалюємо майстерність, і ваш виріб може відрізнятися від фото в деталях — він буде саме вашим.",
  processT:"Як народжується виріб", process:["Розробка ескізу","Скручування дроту","Набір узору","Пайка","Вставка каміння","Готовий виріб","Пакування"],
  catalogT:"Каталог", newT:"Новинки", newBadge:"Новинка", items:"виробів",
@@ -955,7 +960,7 @@ uk:{
 },
 en:{
  logo:"Saranchuk", logoSub:"jewellery workshop",
- allCats:"All categories", sPh:"Search: name or item no.", sRes:"Search results", sNone:"Nothing found. Write to us — we may be able to make exactly what you are looking for.", h1:"Handmade filigree", h1sub:"Every piece is one of a kind",
+ allCats:"All categories", popT:"Popular pieces", customT:"Made to order", customLead:"Every piece is made for you: choose the metal, stones, image, chain length and engraving — or send your own sketch. Write to us for a free consultation.", consultMsg:"Hello! I would like to order a custom piece.", via:"Write on", tgCopied:"Message copied — paste it into the chat", sPh:"Search: name or item no.", sRes:"Search results", sNone:"Nothing found. Write to us — we may be able to make exactly what you are looking for.", h1:"Handmade filigree", h1sub:"Every piece is one of a kind",
  remark:"Each of our pieces is made by hand, so no two are ever alike. We keep refining our craft, and your piece may differ from the photo in details — it will be truly yours.",
  processT:"How a piece is born", process:["Designing the sketch","Twisting the wire","Building the pattern","Soldering","Setting the stones","The finished piece","Packaging"],
  catalogT:"Catalogue", newT:"New arrivals", newBadge:"New", items:"pieces",
@@ -985,7 +990,7 @@ en:{
 },
 ro:{
  logo:"Saranchuk", logoSub:"atelier de bijuterii",
- allCats:"Toate categoriile", sPh:"Căutare: denumire sau cod", sRes:"Rezultatele căutării", sNone:"Nu am găsit nimic. Scrieți-ne — poate realizăm exact ce căutați.", h1:"Filigran lucrat manual", h1sub:"Fiecare piesă este unică",
+ allCats:"Toate categoriile", popT:"Piese populare", customT:"Realizare la comandă", customLead:"Fiecare piesă o realizăm pentru dumneavoastră: alegeți metalul, pietrele, icoana, lungimea lanțului și gravura — sau trimiteți propria schiță. Scrieți-ne pentru o consultație gratuită.", consultMsg:"Bună ziua! Aș dori să comand o piesă personalizată.", via:"Scrieți pe", tgCopied:"Mesaj copiat — lipiți-l în chat", sPh:"Căutare: denumire sau cod", sRes:"Rezultatele căutării", sNone:"Nu am găsit nimic. Scrieți-ne — poate realizăm exact ce căutați.", h1:"Filigran lucrat manual", h1sub:"Fiecare piesă este unică",
  remark:"Fiecare piesă a noastră este lucrată manual, de aceea nu există două identice. Ne perfecționăm continuu meșteșugul, iar piesa dumneavoastră poate diferi de fotografie în detalii — va fi cu adevărat a dumneavoastră.",
  processT:"Cum se naște o piesă", process:["Realizarea schiței","Răsucirea firului","Compunerea modelului","Lipirea","Montarea pietrelor","Piesa finită","Ambalarea"],
  catalogT:"Catalog", newT:"Noutăți", newBadge:"Nou", items:"piese",
@@ -1048,9 +1053,18 @@ function mixHero(){
   return out;
 }
 
+function askButtons(msg){
+  const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  return `<div class="askrow">
+    <a class="btn" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
+    ${TELEGRAM?`<a class="btn ghost tg" href="https://t.me/${TELEGRAM}" target="_blank" rel="noopener" data-copy="${esc(msg)}">Telegram</a>`:""}
+  </div><p class="asknote" hidden></p>`;
+}
+
 function home(){
   const hero = mixHero();
   const news = ITEMS.filter(isNew);
+  const popular = POPULAR.map(id=>ITEMS.find(i=>i.id===id)).filter(Boolean);
   return `
   <section class="hero"><div class="wrap">
     <h1>${t("h1")}</h1><div class="sub">${t("h1sub")}</div>
@@ -1060,13 +1074,8 @@ function home(){
     <p class="remark">${t("remark")}</p>
   </div></section>
 
-  ${PROCESS_VIDEOS.length?`<section><div class="wrap">
-    <h2>${t("processT")}</h2><div class="rule"></div>
-    <div class="pvids">${PROCESS_VIDEOS.slice().sort((a,b)=>a.step-b.step).map(v=>`<figure class="pstep">${/\.(mp4|webm|mov)$/i.test(v.src)?`<video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} muted autoplay loop playsinline preload="metadata"></video>`:`<img src="${v.src}" alt="${t("process")[v.step]}" loading="lazy">`}<figcaption><span>${v.step+1}</span>${t("process")[v.step]}</figcaption></figure>`).join("")}</div>
-  </div></section>`:""}
-
   <section id="catalog"><div class="wrap">
-    <div class="eyebrow">01</div><h2>${t("catalogT")}</h2><div class="rule"></div>
+    <h2>${t("catalogT")}</h2><div class="rule"></div>
     <div class="tiles">${GROUPS.map(g=>{const its=itemsInGroup(g);return `
       <a class="tile" href="#group-${g.id}">${its[0]?`<img src="${its[0].photos[0]}" alt="" loading="lazy">`:`<div class="ph">✦</div>`}
       <div class="cap"><b>${g.n[lang]}</b><small>${its.length} ${t("items")}</small></div></a>`}).join("")}
@@ -1075,11 +1084,19 @@ function home(){
 
   ${news.length?`<section><div class="wrap"><h2>${t("newT")}</h2><div class="rule"></div><div class="items">${news.map(itemCard).join("")}</div></div></section>`:""}
 
+  ${popular.length?`<section><div class="wrap"><h2>${t("popT")}</h2><div class="rule"></div><div class="items">${popular.map(itemCard).join("")}</div></div></section>`:""}
+
+  ${PROCESS_VIDEOS.length?`<section><div class="wrap">
+    <h2>${t("processT")}</h2><div class="rule"></div>
+    <div class="pvids">${PROCESS_VIDEOS.slice().sort((a,b)=>a.step-b.step).map(v=>`<figure class="pstep">${/\.(mp4|webm|mov)$/i.test(v.src)?`<video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} muted autoplay loop playsinline preload="metadata"></video>`:`<img src="${v.src}" alt="${t("process")[v.step]}" loading="lazy">`}<figcaption><span>${v.step+1}</span>${t("process")[v.step]}</figcaption></figure>`).join("")}</div>
+  </div></section>`:""}
 
   <section><div class="wrap">
-    <div class="eyebrow">02</div><h2>${t("orderT")}</h2><div class="rule"></div>
+    <h2>${t("customT")}</h2><div class="rule"></div>
+    <p class="lead" style="margin-bottom:22px">${t("customLead")}</p>
     <div class="steps">${t("steps").map(s=>`<div class="step">${s}</div>`).join("")}</div>
     <p class="terms">${t("terms")}</p>
+    ${askButtons(t("consultMsg"))}
   </div></section>
 
   <section><div class="wrap">
@@ -1163,7 +1180,8 @@ function itemPage(i){
         </ul>
         <div class="price">${price}</div>
         <p class="note">${t("priceNote")}</p>
-        <a class="btn" href="${wa}" target="_blank" rel="noopener">${t("ask")}</a>
+        <div class="asklabel">${t("ask")}</div>
+        ${askButtons(t("wa")(i.name[lang]+" ("+i.art+")", url))}
       </div>
     </div>
   </div></section>`;
@@ -1238,6 +1256,10 @@ const drawer = $("#drawer");
 $("#burger").onclick = ()=>drawer.classList.add("open");
 drawer.addEventListener("click", e=>{ if(e.target.dataset.close!==undefined || e.target.tagName==="A") drawer.classList.remove("open"); });
 const navStack = [location.hash];
+document.addEventListener("click", e=>{
+  const a = e.target.closest && e.target.closest("a.tg[data-copy]"); if(!a) return;
+  try{ navigator.clipboard.writeText(a.dataset.copy).then(()=>{ const n = a.closest(".askrow").nextElementSibling; if(n){ n.textContent = t("tgCopied"); n.hidden = false; } }).catch(()=>{}); }catch(err){}
+});
 window.addEventListener("hashchange", ()=>{
   const cur = location.hash;
   if(navStack.length > 1 && navStack[navStack.length-2] === cur) navStack.pop(); else navStack.push(cur);
