@@ -1002,7 +1002,7 @@ en:{
  contactsT:"Write to us", ask:"Ask about this piece", back:"Back", home:"Home",
  fArt:"Item no.", fMetal:"Metal", fImage:"Image", fBase:"Base", fStones:"Stones", fSize:"Size", fOptions:"Options",
  priceOnReq:"Price on request", priceFrom:"From",
- priceNote:"Prices are approximate. The final cost depends on the price of metal and the chosen details — please confirm when ordering.",
+ priceNote:"Prices are approximate and shown in euro at the current exchange rate. The final cost depends on the price of metal and the chosen details — please confirm when ordering.",
  soon:"coming soon", empty:"Pieces in this section are coming soon. Write to us and we will make one to your order.",
  wa:(n,l)=>`Hello! I am interested in the piece "${n}". Could you please tell me more?\n${l}`,
  copy:"© 2026 Saranchuk — jewellery workshop"
@@ -1032,7 +1032,7 @@ ro:{
  contactsT:"Scrieți-ne", ask:"Întrebați despre piesă", back:"Înapoi", home:"Acasă",
  fArt:"Cod produs", fMetal:"Metal", fImage:"Icoana", fBase:"Bază", fStones:"Pietre", fSize:"Dimensiune", fOptions:"Variante",
  priceOnReq:"Preț la cerere", priceFrom:"De la",
- priceNote:"Prețurile sunt orientative. Costul final depinde de prețul metalului și de detaliile alese — vă rugăm să-l confirmați la comandă.",
+ priceNote:"Prețurile sunt orientative și afișate în euro, la cursul valutar curent. Costul final depinde de prețul metalului și de detaliile alese — vă rugăm să-l confirmați la comandă.",
  soon:"în curând", empty:"Piesele din această secțiune apar în curând. Scrieți-ne și o realizăm la comandă.",
  wa:(n,l)=>`Bună ziua! Mă interesează piesa „${n}”. Vă rog să-mi spuneți mai multe detalii.\n${l}`,
  copy:"© 2026 Saranchuk — atelier de bijuterii"
@@ -1052,6 +1052,23 @@ const secName = id => SECTIONS[id].n[LI[lang]];
 const itemsIn = sid => ITEMS.filter(i => i.section === sid);
 const itemsInGroup = g => ITEMS.filter(i => g.s.some(s => s[0] === i.section));
 const isNew = i => { if(!i.isNew) return false; const d = (Date.now() - new Date(i.added)) / 864e5; return d <= 61; };
+
+/* ціни: українською — у гривнях, англійською та румунською — у євро за поточним курсом НБУ */
+let EUR_RATE = 51.5;   // запасний курс грн за 1 євро, якщо не вдасться отримати свіжий
+try{ const c = JSON.parse(localStorage.getItem("eurRate")||"null"); if(c && c.rate>20 && c.rate<100) EUR_RATE = c.rate; }catch(e){}
+function money(uah){
+  if(lang==="uk") return uah.toLocaleString("uk-UA")+" грн";
+  const e = uah/EUR_RATE, r = e<1000 ? Math.round(e/10)*10 : Math.round(e/50)*50;
+  return "≈ €"+r.toLocaleString(lang==="ro"?"ro-RO":"en-GB").replace(/\u00a0/g," ");
+}
+function loadRate(){
+  try{
+    fetch("https://bank.gov.ua/NBUStatService/v1/statdirect/exchange?valcode=EUR&json").then(r=>r.json()).then(d=>{
+      const rate = d && d[0] && d[0].rate;
+      if(rate>20 && rate<100){ EUR_RATE = rate; try{ localStorage.setItem("eurRate", JSON.stringify({rate, at:Date.now()})); }catch(e){} if(lang!=="uk") render(); }
+    }).catch(()=>{});
+  }catch(e){}
+}
 
 function itemCard(i){
   return `<a class="it" href="#item-${i.id}">${isNew(i)?`<span class="new">${t("newBadge")}</span>`:""}
@@ -1177,7 +1194,7 @@ function itemPage(i){
   const sec = SECTIONS[i.section], g = sec.groups[0];
   const url = location.href.split("#")[0] + "#item-" + i.id;
   const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t("wa")(i.name[lang]+" ("+i.art+")", url))}`;
-  const price = i.price ? `${i.priceFrom?t("priceFrom")+" ":""}${i.price.toLocaleString("uk-UA")} грн` : t("priceOnReq");
+  const price = i.price ? `${i.priceFrom?t("priceFrom")+" ":""}${money(i.price)}` : t("priceOnReq");
   return `<section style="border:0"><div class="wrap">
     <div class="crumbs"><a href="#">${t("home")}</a> / <a href="#group-${g.id}">${g.n[lang]}</a> / <a href="#section-${sec.id}">${secName(sec.id)}</a></div>
     <div class="item">
@@ -1197,7 +1214,7 @@ function itemPage(i){
           ${i.size?`<li><em>${t("fSize")}</em>${esc(i.size[lang])}</li>`:""}
           ${i.options?`<li><em>${t("fOptions")}</em>${esc(i.options[lang])}</li>`:""}
         </ul>
-        ${i.prices?`<div class="prices">${i.prices.map(x=>`<div class="prow"><span>${esc(x.l[lang])}</span><b>${x.p.toLocaleString("uk-UA")} грн</b></div>`).join("")}</div>`:`<div class="price">${price}</div>`}
+        ${i.prices?`<div class="prices">${i.prices.map(x=>`<div class="prow"><span>${esc(x.l[lang])}</span><b>${money(x.p)}</b></div>`).join("")}</div>`:`<div class="price">${price}</div>`}
         ${i.priceInfo?`<p class="pinfo">${esc(i.priceInfo[lang])}</p>`:""}
         <p class="note">${t("priceNote")}</p>
         <div class="asklabel">${t("ask")}</div>
@@ -1289,6 +1306,7 @@ const zoom = $("#zoom");
 document.addEventListener("click", e=>{ const z = e.target.dataset && e.target.dataset.zoom; if(z){ zoom.querySelector("img").src = z; zoom.classList.add("open"); } });
 zoom.addEventListener("click", ()=>zoom.classList.remove("open"));
 render();
+loadRate();
 </script>
 </body>
 </html>
