@@ -120,6 +120,10 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 .tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:64px;color:#2c2824}
 
 /* lists */
+.backbar{padding-top:18px}
+.backbar + section{padding-top:22px}
+.backbtn{font-size:14px;color:var(--bronze2);border:1px solid var(--line);padding:8px 14px;letter-spacing:.03em}
+.backbtn:hover{border-color:var(--bronze)}
 .crumbs{font-size:13px;color:var(--muted);margin-bottom:12px}
 .crumbs a{text-decoration:none;color:var(--bronze)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
@@ -1201,7 +1205,16 @@ function render(){
   else if(h==="search" && searchQ){ html = searchPage(searchQ); }
   else if(h.startsWith("section-")){ const s = SECTIONS[h.slice(8)]; html = s ? groupPage(s.groups[0], s.id) : home(); }
   else html = home();
+  const isHome = !h || h==="catalog" || h==="contacts";
+  if(!isHome) html = `<div class="wrap backbar"><button class="backbtn" id="backbtn">← ${t("back")}</button></div>` + html;
   $("#app").innerHTML = html;
+  const bb = $("#backbtn");
+  if(bb) bb.onclick = ()=>{
+    if(navStack.length > 1){ history.back(); return; }
+    if(h.startsWith("item-")){ const i = ITEMS.find(x=>x.id===h.slice(5)); location.hash = i ? "section-"+i.section : ""; }
+    else if(h.startsWith("section-")){ const s = SECTIONS[h.slice(8)]; location.hash = s ? "group-"+s.groups[0].id : ""; }
+    else location.hash = "catalog";
+  };
   if(h && h!=="catalog" && h!=="contacts") window.scrollTo(0,0);
   else if(h){ const el = document.getElementById(h); if(el) el.scrollIntoView(); }
   document.querySelectorAll(".thumbs img").forEach(im=>im.onclick=()=>{
@@ -1224,7 +1237,12 @@ $("#langs").addEventListener("click", e=>{ const l = e.target.dataset.l; if(!l) 
 const drawer = $("#drawer");
 $("#burger").onclick = ()=>drawer.classList.add("open");
 drawer.addEventListener("click", e=>{ if(e.target.dataset.close!==undefined || e.target.tagName==="A") drawer.classList.remove("open"); });
-window.addEventListener("hashchange", render);
+const navStack = [location.hash];
+window.addEventListener("hashchange", ()=>{
+  const cur = location.hash;
+  if(navStack.length > 1 && navStack[navStack.length-2] === cur) navStack.pop(); else navStack.push(cur);
+  render();
+});
 const zoom = $("#zoom");
 document.addEventListener("click", e=>{ const z = e.target.dataset && e.target.dataset.zoom; if(z){ zoom.querySelector("img").src = z; zoom.classList.add("open"); } });
 zoom.addEventListener("click", ()=>zoom.classList.remove("open"));
