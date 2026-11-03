@@ -159,6 +159,8 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 .price{font-family:var(--serif);font-size:26px;margin-top:8px}
 .note{font-size:13px;color:var(--muted);margin-top:6px}
 .btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--bronze);color:#111;text-decoration:none;padding:14px 26px;font-weight:600;font-size:15px;letter-spacing:.03em}
+.subh{font-family:var(--serif);font-weight:500;font-size:22px;margin:34px 0 14px}
+.palette{width:min(100%,360px);height:auto;border:1px solid var(--line);cursor:zoom-in;display:block}
 .askrow{display:flex;gap:10px;flex-wrap:wrap}
 .askrow .btn{margin-top:12px;min-width:140px;justify-content:center}
 .asklabel{margin-top:22px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
@@ -1006,7 +1008,7 @@ const ITEMS = [
 const T = {
 uk:{
  logo:"Саранчук", logoSub:"ювелірна майстерня",
- allCats:"Усі категорії", popT:"Популярні вироби", customT:"Індивідуальне виготовлення", customLead:"Кожен виріб ми створюємо під вас: обираєте метал, каміння, образ, довжину ланцюжка, гравіювання — або надсилаєте власний ескіз. Напишіть нам, і ми безкоштовно проконсультуємо.", consultMsg:"Добрий день! Хочу замовити виріб за індивідуальним задумом.", via:"Написати у", tgCopied:"Повідомлення скопійовано — вставте його в чат", sPh:"Пошук: назва чи артикул", sRes:"Результати пошуку", sNone:"Нічого не знайдено. Напишіть нам — можливо, ми виготовимо саме те, що ви шукаєте.", h1:"Філігрань ручної роботи", h1sub:"Кожен виріб неповторний",
+ allCats:"Усі категорії", popT:"Популярні вироби", customT:"Індивідуальне виготовлення", stonesT:"Оберіть колір каміння", customLead:"Кожен виріб ми створюємо під вас: обираєте метал, каміння, образ, довжину ланцюжка, гравіювання — або надсилаєте власний ескіз. Напишіть нам, і ми безкоштовно проконсультуємо.", consultMsg:"Добрий день! Хочу замовити виріб за індивідуальним задумом.", via:"Написати у", tgCopied:"Повідомлення скопійовано — вставте його в чат", sPh:"Пошук: назва чи артикул", sRes:"Результати пошуку", sNone:"Нічого не знайдено. Напишіть нам — можливо, ми виготовимо саме те, що ви шукаєте.", h1:"Філігрань ручної роботи", h1sub:"Кожен виріб неповторний",
  remark:"Кожен наш виріб створюється вручну, тому двох однакових не буває. Ми постійно вдосконалюємо майстерність, і ваш виріб може відрізнятися від фото в деталях — він буде саме вашим.",
  processT:"Як народжується виріб", process:["Розробка ескізу","Скручування дроту","Набір узору","Пайка","Вставка каміння","Готовий виріб","Пакування"],
  catalogT:"Каталог", newT:"Новинки", newBadge:"Новинка", items:"виробів",
@@ -1019,6 +1021,7 @@ uk:{
  revT:"Відгуки", faqT:"Питання та відповіді",
  faq:[
   ["Чи можна позолотити виріб?","Так, повністю або частково, а колір каміння ви теж обираєте самі. Проте позолота з часом стирається: залежно від того, як носити виріб, вона тримається від кількох місяців до кількох років. Тому гарантії на позолоту ми не даємо, але завжди можемо оновити її за окрему плату. Ми радимо інше рішення, яке стало нашою фішкою: поєднання срібла з елементами з чистого золота. Золото не стирається і служить вам усе життя."],
+  ["Який колір каміння можна обрати?","Колір каміння ви обираєте самі: аквамарин, сапфір, гранат, цитрин, аметист або кавовий. Напишіть нам, який колір вам до вподоби, і ми виготовимо виріб саме з ним."],
   ["Як доглядати за сріблом?","Срібло природно темніє з часом. Протирайте виріб м'якою фланеллю, а для глибшого чищення звертайтеся до нас. Ми почистимо його делікатно, щоб не пошкодити філігрань і позолоту. Бережіть виріб від хлорованої води, парфумів і побутової хімії, а зберігайте окремо, в закритій коробочці."],
   ["Чи можна замовити виріб за власним ескізом?","Так, ми охоче працюємо за вашою ідеєю. Надсилайте ескіз від руки, фото, приклад з інтернету чи готову 3D-модель. Ми адаптуємо задум під філігрань і виготовимо виріб у сріблі чи золоті."],
   ["Які розміри хрестів і ланцюжків?","Середня довжина ієрейського наперсного хреста разом з підвісами 12–13 см, але ми виготовимо й менший чи більший. Стандартна довжина ланцюжка 80, 110 чи 120 см, а на замовлення зробимо будь-яку."],
@@ -1036,7 +1039,7 @@ uk:{
 },
 en:{
  logo:"Saranchuk", logoSub:"jewellery workshop",
- allCats:"All categories", popT:"Popular pieces", customT:"Made to order", customLead:"Every piece is made for you: choose the metal, stones, image, chain length and engraving — or send your own sketch. Write to us for a free consultation.", consultMsg:"Hello! I would like to order a custom piece.", via:"Write on", tgCopied:"Message copied — paste it into the chat", sPh:"Search: name or item no.", sRes:"Search results", sNone:"Nothing found. Write to us — we may be able to make exactly what you are looking for.", h1:"Handmade filigree", h1sub:"Every piece is one of a kind",
+ allCats:"All categories", popT:"Popular pieces", customT:"Made to order", stonesT:"Choose the colour of the stones", customLead:"Every piece is made for you: choose the metal, stones, image, chain length and engraving — or send your own sketch. Write to us for a free consultation.", consultMsg:"Hello! I would like to order a custom piece.", via:"Write on", tgCopied:"Message copied — paste it into the chat", sPh:"Search: name or item no.", sRes:"Search results", sNone:"Nothing found. Write to us — we may be able to make exactly what you are looking for.", h1:"Handmade filigree", h1sub:"Every piece is one of a kind",
  remark:"Each of our pieces is made by hand, so no two are ever alike. We keep refining our craft, and your piece may differ from the photo in details — it will be truly yours.",
  processT:"How a piece is born", process:["Designing the sketch","Twisting the wire","Building the pattern","Soldering","Setting the stones","The finished piece","Packaging"],
  catalogT:"Catalogue", newT:"New arrivals", newBadge:"New", items:"pieces",
@@ -1049,6 +1052,7 @@ en:{
  revT:"Reviews", faqT:"Questions & answers",
  faq:[
   ["Can a piece be gilded?","Yes, fully or partially, and you also choose the colour of the stones. However, gilding wears off over time: depending on how the piece is worn, it lasts from a few months to a few years. That is why we do not give a warranty on gilding, but we can always renew it for a separate fee. We recommend another solution that has become our signature: silver combined with elements of solid gold. Gold does not wear off and will serve you for a lifetime."],
+  ["What colour of stones can I choose?","You choose the colour of the stones yourself: aquamarine, sapphire, garnet, citrine, amethyst or coffee brown. Write to us which colour you like and we will make the piece with it."],
   ["How should I care for silver?","Silver naturally darkens over time. Wipe the piece with a soft flannel cloth, and for deeper cleaning bring it to us. We will clean it gently so as not to damage the filigree and gilding. Keep the piece away from chlorinated water, perfume and household chemicals, and store it separately in a closed box."],
   ["Can I order a piece from my own sketch?","Yes, we are happy to work from your idea. Send a hand sketch, a photo, an example from the internet or a ready 3D model. We will adapt the idea to filigree and make the piece in silver or gold."],
   ["What sizes are crosses and chains?","A priest's pectoral cross is on average 12–13 cm long including the pendants, but we can make it smaller or larger. Standard chain lengths are 80, 110 or 120 cm, and we can make any length to order."],
@@ -1066,7 +1070,7 @@ en:{
 },
 ro:{
  logo:"Saranchuk", logoSub:"atelier de bijuterii",
- allCats:"Toate categoriile", popT:"Piese populare", customT:"Realizare la comandă", customLead:"Fiecare piesă o realizăm pentru dumneavoastră: alegeți metalul, pietrele, icoana, lungimea lanțului și gravura — sau trimiteți propria schiță. Scrieți-ne pentru o consultație gratuită.", consultMsg:"Bună ziua! Aș dori să comand o piesă personalizată.", via:"Scrieți pe", tgCopied:"Mesaj copiat — lipiți-l în chat", sPh:"Căutare: denumire sau cod", sRes:"Rezultatele căutării", sNone:"Nu am găsit nimic. Scrieți-ne — poate realizăm exact ce căutați.", h1:"Filigran lucrat manual", h1sub:"Fiecare piesă este unică",
+ allCats:"Toate categoriile", popT:"Piese populare", customT:"Realizare la comandă", stonesT:"Alegeți culoarea pietrelor", customLead:"Fiecare piesă o realizăm pentru dumneavoastră: alegeți metalul, pietrele, icoana, lungimea lanțului și gravura — sau trimiteți propria schiță. Scrieți-ne pentru o consultație gratuită.", consultMsg:"Bună ziua! Aș dori să comand o piesă personalizată.", via:"Scrieți pe", tgCopied:"Mesaj copiat — lipiți-l în chat", sPh:"Căutare: denumire sau cod", sRes:"Rezultatele căutării", sNone:"Nu am găsit nimic. Scrieți-ne — poate realizăm exact ce căutați.", h1:"Filigran lucrat manual", h1sub:"Fiecare piesă este unică",
  remark:"Fiecare piesă a noastră este lucrată manual, de aceea nu există două identice. Ne perfecționăm continuu meșteșugul, iar piesa dumneavoastră poate diferi de fotografie în detalii — va fi cu adevărat a dumneavoastră.",
  processT:"Cum se naște o piesă", process:["Realizarea schiței","Răsucirea firului","Compunerea modelului","Lipirea","Montarea pietrelor","Piesa finită","Ambalarea"],
  catalogT:"Catalog", newT:"Noutăți", newBadge:"Nou", items:"piese",
@@ -1079,6 +1083,7 @@ ro:{
  revT:"Recenzii", faqT:"Întrebări și răspunsuri",
  faq:[
   ["Se poate auri piesa?","Da, integral sau parțial, iar culoarea pietrelor o alegeți tot dumneavoastră. Totuși, aurirea se șterge în timp: în funcție de cum este purtată piesa, rezistă de la câteva luni la câțiva ani. De aceea nu oferim garanție pentru aurire, dar o putem reînnoi oricând contra cost. Vă recomandăm o altă soluție, care a devenit semnătura atelierului nostru: argint îmbinat cu elemente din aur masiv. Aurul nu se șterge și vă va sluji toată viața."],
+  ["Ce culoare de pietre pot alege?","Culoarea pietrelor o alegeți dumneavoastră: acvamarin, safir, granat, citrin, ametist sau maro cafea. Scrieți-ne ce culoare vă place și vom realiza piesa cu ea."],
   ["Cum se îngrijește argintul?","Argintul se închide la culoare în mod natural cu timpul. Ștergeți piesa cu o flanelă moale, iar pentru o curățare mai profundă adresați-vă nouă. O vom curăța delicat, ca să nu deteriorăm filigranul și aurirea. Feriți piesa de apa clorinată, parfum și substanțe de uz casnic și păstrați-o separat, într-o cutiuță închisă."],
   ["Pot comanda o piesă după propria schiță?","Da, lucrăm cu plăcere după ideea dumneavoastră. Trimiteți o schiță de mână, o fotografie, un exemplu de pe internet sau un model 3D gata făcut. Adaptăm ideea pentru filigran și realizăm piesa în argint sau aur."],
   ["Ce dimensiuni au crucile și lanțurile?","O cruce pectorală preoțească are în medie 12–13 cm lungime, împreună cu pandantivele, dar o putem face și mai mică sau mai mare. Lungimile standard ale lanțului sunt 80, 110 sau 120 cm, iar la comandă realizăm orice lungime."],
@@ -1187,6 +1192,8 @@ function home(){
     <p class="lead" style="margin-bottom:22px">${t("customLead")}</p>
     <div class="steps">${t("steps").map(s=>`<div class="step">${s}</div>`).join("")}</div>
     <p class="terms">${t("terms")}</p>
+    <h3 class="subh">${t("stonesT")}</h3>
+    <img class="palette" src="img/palette-stones.jpg" alt="${t("stonesT")}" loading="lazy" data-zoom="img/palette-stones.jpg">
     ${askButtons(t("consultMsg"))}
   </div></section>
 
