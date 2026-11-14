@@ -23,8 +23,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap&subset=cyrillic,latin-ext" rel="stylesheet">
 <style>
 :root{
-  --bg:#111110; --bg2:#181716; --card:#1e1c1a; --line:#2e2a26;
-  --bronze:#b48a55; --bronze2:#d2ab74; --text:#ece6dc; --muted:#a29a8e;
+  --bg:#111111; --bg2:#181716; --card:#242321; --line:#2e2a26;
+  --bronze:#b69a73; --bronze2:#cbb38f; --text:#e9e1d6; --muted:#a9a29a;
   --serif:'Playfair Display',Georgia,serif; --sans:'Manrope',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -37,11 +37,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:.01em}
 h2{font-size:clamp(26px,4vw,38px);margin-bottom:18px}
 .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze)}
-.rule{width:56px;height:1px;background:var(--bronze);margin:14px 0 26px}
-section{padding:72px 0;border-top:1px solid var(--line)}
+.rule{width:56px;height:1px;background:var(--bronze);margin:12px 0 22px}
+section{padding:56px 0;border-top:1px solid var(--line);scroll-margin-top:64px}
 
 /* header */
-header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(17,17,17,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;gap:16px;height:64px}
 .burger{width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:8px}
 .burger span{height:1px;background:var(--text);display:block}
@@ -66,6 +66,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 @media (max-width:420px){.logo small{letter-spacing:.14em;font-size:9px}.bar{gap:8px}.langs button{padding:6px 5px}}
 .rest{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:24px}
 .rest img{width:100%;height:auto;border:1px solid var(--line);cursor:zoom-in}
+@media (max-width:760px){.rest{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:10px}.rest::-webkit-scrollbar{display:none}.rest img{flex:0 0 min(80vw,340px);width:min(80vw,340px);scroll-snap-align:start}}
 /* reviews + zoom */
 .revs{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
 .revs::-webkit-scrollbar{display:none}
@@ -88,23 +89,24 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 .drawer .x{position:absolute;right:14px;top:14px;font-size:26px;color:var(--muted)}
 
 /* hero */
-.hero{padding:22px 0 24px;text-align:center;border:0}
-.hero h1{font-size:clamp(17px,2.8vw,26px);letter-spacing:.04em;line-height:1.15;font-weight:400;color:#cdb38a}
-.hero .sub{font-family:var(--sans);font-weight:300;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(13px,1.8vw,16px);color:var(--muted);margin-top:8px}
-.carousel{position:relative;margin-top:18px}
-.track{display:flex;align-items:flex-start;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
-.track::-webkit-scrollbar{display:none}
-.slide{flex:0 0 min(40vw,210px);min-width:0;overflow:hidden;scroll-snap-align:center;text-decoration:none;background:var(--card);border:1px solid var(--line)}
-.slide img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#0d0d0c}
-.slide p{padding:8px 10px;font-family:var(--serif);font-size:13px;line-height:1.3;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.track.single{justify-content:center}
-.remark{max-width:760px;margin:24px auto 0;font-size:14px;color:var(--muted);border-left:1px solid var(--bronze);padding-left:18px;text-align:left}
+.hero{padding:20px 0 24px;text-align:center;border:0}
+.hero h1{font-size:clamp(24px,6vw,40px);line-height:1.15;font-weight:400;color:#cdb38a}
+.hero .sub{font-family:var(--sans);font-weight:300;letter-spacing:.16em;text-transform:uppercase;font-size:clamp(12px,3vw,15px);color:var(--muted);margin-top:10px}
+.herofig{display:block;margin:16px auto 0;width:min(100%,320px);text-decoration:none}
+.herofig img{width:100%;height:min(46vh,400px);object-fit:contain;background:#000;border:1px solid var(--line)}
+.herobtns{display:flex;justify-content:center;margin-top:20px}
+@media (max-width:360px){.herobtn{letter-spacing:.1em;padding:14px 16px}}
+.herobtn{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--bronze2);border:1px solid var(--bronze);padding:14px 22px;font-size:11.5px;font-weight:500;letter-spacing:.16em;white-space:nowrap;text-transform:uppercase;background:linear-gradient(180deg,rgba(182,154,115,.07),transparent);transition:background .3s,color .3s}
+.herobtn:after{content:'';width:18px;height:1px;background:currentColor;position:relative;transition:width .3s}
+.herobtn:hover{background:var(--bronze);color:#111}
+.herobtn:hover:after{width:28px}
+.remark{max-width:760px;margin:22px 0 0;font-size:15px;color:var(--muted);border-left:1px solid var(--bronze);padding-left:18px}
 
 /* process */
 .vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
 .vid{aspect-ratio:9/14;background:var(--card);border:1px solid var(--line);display:flex;align-items:flex-end;padding:14px;font-size:14px;color:var(--muted)}
-.pvids{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}.pvids::-webkit-scrollbar{display:none}
-.pstep{position:relative;margin:0;flex:0 0 min(40vw,210px);aspect-ratio:9/16;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.pvids{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.pvids::-webkit-scrollbar{display:none}
+.pstep{position:relative;margin:0;flex:0 0 min(58vw,250px);scroll-snap-align:start;aspect-ratio:9/16;overflow:hidden;border:1px solid var(--line);background:var(--card)}
 .pstep img,.pstep video{width:100%;height:100%;object-fit:contain;background:#0d0d0c;display:block}
 .pstep figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px;font-size:13px !important;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:14px}
 .pstep figcaption span{color:var(--bronze);margin-right:8px;font-family:var(--serif)}
@@ -112,14 +114,37 @@ header{position:sticky;top:0;z-index:20;background:rgba(17,17,16,.92);backdrop-f
 .soon{border:1px dashed #4a433b !important}
 
 /* catalog */
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
-.tile{position:relative;text-decoration:none;background:#0d0d0c;border:1px solid var(--line);aspect-ratio:3/4;overflow:hidden;display:flex;align-items:flex-end}
-.tile img{position:absolute;inset:0 0 64px 0;width:100%;height:calc(100% - 64px);object-fit:contain;opacity:.9;transition:.4s}
-.tile:hover img{opacity:1}
-.tile .cap{position:relative;width:100%;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
-.tile .cap b{font-family:var(--serif);font-weight:500;font-size:16px;line-height:1.25;display:block}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 12px}
+@media (min-width:640px){.tiles{grid-template-columns:repeat(3,1fr);gap:26px 16px}}
+@media (min-width:1000px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{display:block;text-decoration:none;border-top:1px solid var(--line);padding-top:12px}
+.tile .tp{aspect-ratio:3/4;background:#0d0d0c;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.tile img{width:100%;height:100%;object-fit:contain;transition:transform .5s}
+.tile .cap{padding:12px 2px 0}
+.tile .cap b{font-family:var(--serif);font-weight:500;font-size:16px;line-height:1.3;display:block}
 .tile .cap small{color:var(--muted);font-size:12px}
-.tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:64px;color:#2c2824}
+.tile .ph{font-family:var(--serif);font-size:56px;color:#2c2824}
+.tile.more{display:none}
+.tiles.open .tile.more{display:block}
+.allcats{display:flex;margin:28px auto 0;justify-content:center;width:fit-content}
+.custom .herobtn{margin-top:4px}
+@media (hover:hover){.tile:hover img{transform:scale(1.03)}.tile:hover .cap b{color:var(--bronze2)}.it:hover{border-color:var(--bronze)}}
+/* custom, trust */
+.custom{background:var(--card)}
+.custom .step{background:var(--bg2)}
+.askbox[hidden]{display:none}
+.trust{padding:34px 0}
+.trustg{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 14px}
+@media (min-width:760px){.trustg{grid-template-columns:repeat(4,1fr)}}
+.tr{text-align:center;font-size:14px;line-height:1.35;color:var(--text)}
+.tr svg{width:30px;height:30px;stroke:var(--bronze);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 10px;display:block}
+.drawer details{border-bottom:1px solid var(--line)}
+.drawer summary{list-style:none;cursor:pointer;padding:13px 0;font-family:var(--serif);font-size:17px;display:flex;justify-content:space-between;gap:12px}
+.drawer summary::-webkit-details-marker{display:none}
+.drawer summary:after{content:'+';color:var(--bronze);font-family:var(--sans);font-size:20px;line-height:1}
+.drawer details[open] summary:after{content:'−'}
+.drawer details a{padding:7px 0 7px 12px;color:var(--muted)}
+.drawer details a:last-child{padding-bottom:14px}
 
 /* lists */
 .backbar{padding-top:18px}
@@ -208,7 +233,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;text-align:center;co
 
 @media (max-width:760px){
   .item{grid-template-columns:1fr;gap:24px}
-  section{padding:56px 0}
+  section{padding:40px 0}
 }
 </style>
 </head>
@@ -1022,7 +1047,7 @@ const ITEMS = [
 const T = {
 uk:{
  logo:"Саранчук", logoSub:"ювелірна майстерня",
- allCats:"Усі категорії", popT:"Популярні вироби", customT:"Індивідуальне виготовлення", stonesT:"Оберіть колір каміння", customLead:"Кожен виріб ми створюємо під вас: обираєте метал, каміння, образ, довжину ланцюжка, гравіювання — або надсилаєте власний ескіз. Напишіть нам, і ми безкоштовно проконсультуємо.", consultMsg:"Добрий день! Хочу замовити виріб за індивідуальним задумом.", via:"Написати у", tgCopied:"Повідомлення скопійовано — вставте його в чат", sPh:"Пошук: назва чи артикул", sRes:"Результати пошуку", sNone:"Нічого не знайдено. Напишіть нам — можливо, ми виготовимо саме те, що ви шукаєте.", h1:"Філігрань ручної роботи", h1sub:"Кожен виріб неповторний",
+ allCats:"Усі категорії", heroCat:"Переглянути каталог", heroCustom:"Індивідуальне замовлення", customH:"Ваша ідея. Наша майстерність", customLead2:"Ми створюємо ювелірні вироби, які відображають ваші побажання та мають особливе значення. Оберіть дизайн, дорогоцінний метал, каміння й декоративні елементи, а ми допоможемо втілити вашу ідею.", customBtn:"Обговорити замовлення", aboutH:"Кожна деталь має значення", trust:["Ручне виготовлення","Срібло та золото","Індивідуальний підхід","1 рік гарантійного обслуговування"], restCta:"Отримати консультацію щодо реставрації", restMsg:"Добрий день! Хочу проконсультуватися щодо реставрації виробу.", popT:"Популярні вироби", customT:"Індивідуальне виготовлення", stonesT:"Оберіть колір каміння", customLead:"Кожен виріб ми створюємо під вас: обираєте метал, каміння, образ, довжину ланцюжка, гравіювання — або надсилаєте власний ескіз. Напишіть нам, і ми безкоштовно проконсультуємо.", consultMsg:"Добрий день! Хочу замовити виріб за індивідуальним задумом.", via:"Написати у", tgCopied:"Повідомлення скопійовано — вставте його в чат", sPh:"Пошук: назва чи артикул", sRes:"Результати пошуку", sNone:"Нічого не знайдено. Напишіть нам — можливо, ми виготовимо саме те, що ви шукаєте.", h1:"Філігрань ручної роботи", h1sub:"Кожен виріб неповторний",
  remark:"Кожен наш виріб створюється вручну, тому двох однакових не буває. Ми постійно вдосконалюємо майстерність, і ваш виріб може відрізнятися від фото в деталях — він буде саме вашим.",
  processT:"Як народжується виріб", process:["Розробка ескізу","Скручування дроту","Набір узору","Пайка","Вставка каміння","Готовий виріб","Пакування"],
  catalogT:"Каталог", newT:"Новинки", newBadge:"Новинка", items:"виробів",
@@ -1053,7 +1078,7 @@ uk:{
 },
 en:{
  logo:"Saranchuk", logoSub:"jewellery workshop",
- allCats:"All categories", popT:"Popular pieces", customT:"Made to order", stonesT:"Choose the colour of the stones", customLead:"Every piece is made for you: choose the metal, stones, image, chain length and engraving — or send your own sketch. Write to us for a free consultation.", consultMsg:"Hello! I would like to order a custom piece.", via:"Write on", tgCopied:"Message copied — paste it into the chat", sPh:"Search: name or item no.", sRes:"Search results", sNone:"Nothing found. Write to us — we may be able to make exactly what you are looking for.", h1:"Handmade filigree", h1sub:"Every piece is one of a kind",
+ allCats:"All categories", heroCat:"View the catalogue", heroCustom:"Made to order", customH:"Your idea. Our craftsmanship", customLead2:"We create jewellery that reflects your wishes and carries a special meaning. Choose the design, precious metal, stones and decorative elements, and we will help bring your idea to life.", customBtn:"Discuss your order", aboutH:"Every detail matters", trust:["Handmade","Silver and gold","Individual approach","1-year warranty service"], restCta:"Get a restoration consultation", restMsg:"Hello! I would like a consultation about restoring a piece.", popT:"Popular pieces", customT:"Made to order", stonesT:"Choose the colour of the stones", customLead:"Every piece is made for you: choose the metal, stones, image, chain length and engraving — or send your own sketch. Write to us for a free consultation.", consultMsg:"Hello! I would like to order a custom piece.", via:"Write on", tgCopied:"Message copied — paste it into the chat", sPh:"Search: name or item no.", sRes:"Search results", sNone:"Nothing found. Write to us — we may be able to make exactly what you are looking for.", h1:"Handmade filigree", h1sub:"Every piece is one of a kind",
  remark:"Each of our pieces is made by hand, so no two are ever alike. We keep refining our craft, and your piece may differ from the photo in details — it will be truly yours.",
  processT:"How a piece is born", process:["Designing the sketch","Twisting the wire","Building the pattern","Soldering","Setting the stones","The finished piece","Packaging"],
  catalogT:"Catalogue", newT:"New arrivals", newBadge:"New", items:"pieces",
@@ -1084,7 +1109,7 @@ en:{
 },
 ro:{
  logo:"Saranchuk", logoSub:"atelier de bijuterii",
- allCats:"Toate categoriile", popT:"Piese populare", customT:"Realizare la comandă", stonesT:"Alegeți culoarea pietrelor", customLead:"Fiecare piesă o realizăm pentru dumneavoastră: alegeți metalul, pietrele, icoana, lungimea lanțului și gravura — sau trimiteți propria schiță. Scrieți-ne pentru o consultație gratuită.", consultMsg:"Bună ziua! Aș dori să comand o piesă personalizată.", via:"Scrieți pe", tgCopied:"Mesaj copiat — lipiți-l în chat", sPh:"Căutare: denumire sau cod", sRes:"Rezultatele căutării", sNone:"Nu am găsit nimic. Scrieți-ne — poate realizăm exact ce căutați.", h1:"Filigran lucrat manual", h1sub:"Fiecare piesă este unică",
+ allCats:"Toate categoriile", heroCat:"Vezi catalogul", heroCustom:"Comandă personalizată", customH:"Ideea dumneavoastră. Măiestria noastră", customLead2:"Realizăm bijuterii care reflectă dorințele dumneavoastră și au o semnificație deosebită. Alegeți designul, metalul prețios, pietrele și elementele decorative, iar noi vă ajutăm să vă materializați ideea.", customBtn:"Discutați comanda", aboutH:"Fiecare detaliu contează", trust:["Lucrat manual","Argint și aur","Abordare individuală","1 an service de garanție"], restCta:"Consultație pentru restaurare", restMsg:"Bună ziua! Aș dori o consultație privind restaurarea unei piese.", popT:"Piese populare", customT:"Realizare la comandă", stonesT:"Alegeți culoarea pietrelor", customLead:"Fiecare piesă o realizăm pentru dumneavoastră: alegeți metalul, pietrele, icoana, lungimea lanțului și gravura — sau trimiteți propria schiță. Scrieți-ne pentru o consultație gratuită.", consultMsg:"Bună ziua! Aș dori să comand o piesă personalizată.", via:"Scrieți pe", tgCopied:"Mesaj copiat — lipiți-l în chat", sPh:"Căutare: denumire sau cod", sRes:"Rezultatele căutării", sNone:"Nu am găsit nimic. Scrieți-ne — poate realizăm exact ce căutați.", h1:"Filigran lucrat manual", h1sub:"Fiecare piesă este unică",
  remark:"Fiecare piesă a noastră este lucrată manual, de aceea nu există două identice. Ne perfecționăm continuu meșteșugul, iar piesa dumneavoastră poate diferi de fotografie în detalii — va fi cu adevărat a dumneavoastră.",
  processT:"Cum se naște o piesă", process:["Realizarea schiței","Răsucirea firului","Compunerea modelului","Lipirea","Montarea pietrelor","Piesa finită","Ambalarea"],
  catalogT:"Catalog", newT:"Noutăți", newBadge:"Nou", items:"piese",
@@ -1171,45 +1196,60 @@ function askButtons(msg){
   </div><p class="asknote" hidden></p>`;
 }
 
+const TRUST_ICONS = [`<path d="M18 11V6a2 2 0 00-4 0v5"/><path d="M14 10V4a2 2 0 00-4 0v2"/><path d="M10 10.5V6a2 2 0 00-4 0v8"/><path d="M18 8a2 2 0 114 0v6a8 8 0 01-8 8h-2c-2.8 0-4.5-.9-5.9-2.4L3.4 16a2 2 0 013.2-2.4L8 15"/>`, `<path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3L8 9l4 13 4-13-3-6"/><path d="M2 9h20"/>`, `<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>`, `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>`];
 function home(){
-  const hero = mixHero();
+  const heroItem = ITEMS.find(i=>i.id==="naperstnyi-khrest-1") || mixHero()[0];
   const news = ITEMS.filter(isNew);
   const popular = POPULAR.map(id=>ITEMS.find(i=>i.id===id)).filter(Boolean);
   return `
   <section class="hero"><div class="wrap">
     <h1>${t("h1")}</h1><div class="sub">${t("h1sub")}</div>
-    <div class="carousel"><div class="track ${hero.length<2?"single":""}">
-      ${hero.map(i=>`<a class="slide" href="#item-${i.id}"><img src="${i.photos[0]}" alt="${esc(i.name[lang])}"><p>${esc(i.name[lang])}</p></a>`).join("")}
-    </div></div>
-    <p class="remark">${t("remark")}</p>
+    ${heroItem?`<a class="herofig" href="#item-${heroItem.id}"><img src="${heroItem.photos[0]}" alt="${esc(heroItem.name[lang])}"></a>`:""}
+    <div class="herobtns">
+      <a class="herobtn" href="#custom" onclick="document.getElementById('custom').scrollIntoView({behavior:'smooth'});return false">${t("heroCustom")}</a>
+    </div>
   </div></section>
 
   <section id="catalog"><div class="wrap">
     <h2>${t("catalogT")}</h2><div class="rule"></div>
-    <div class="tiles">${GROUPS.map(g=>{const its=itemsInGroup(g);return `
-      <a class="tile" href="#group-${g.id}">${its[0]?`<img src="${its[0].photos[0]}" alt="" loading="lazy">`:`<div class="ph">✦</div>`}
+    <div class="tiles">${GROUPS.map((g,k)=>{const its=itemsInGroup(g);return `
+      <a class="tile${k>=6?" more":""}" href="#group-${g.id}"><div class="tp">${its[0]?`<img src="${its[0].photos[0]}" alt="" loading="lazy">`:`<div class="ph">✦</div>`}</div>
       <div class="cap"><b>${g.n[lang]}</b><small>${its.length} ${t("items")}</small></div></a>`}).join("")}
     </div>
+    ${GROUPS.length>6?`<button class="herobtn allcats" onclick="this.previousElementSibling.classList.add('open');this.remove()">${t("allCats")}</button>`:""}
   </div></section>
-
-  ${news.length?`<section><div class="wrap"><h2>${t("newT")}</h2><div class="rule"></div><div class="items">${news.map(itemCard).join("")}</div></div></section>`:""}
-
-  ${popular.length?`<section><div class="wrap"><h2>${t("popT")}</h2><div class="rule"></div><div class="items">${popular.map(itemCard).join("")}</div></div></section>`:""}
 
   ${PROCESS_VIDEOS.length?`<section><div class="wrap">
     <h2>${t("processT")}</h2><div class="rule"></div>
     <div class="pvids">${PROCESS_VIDEOS.slice().sort((a,b)=>a.step-b.step).map(v=>`<figure class="pstep">${/\.(mp4|webm|mov)$/i.test(v.src)?`<video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} muted autoplay loop playsinline preload="metadata"></video>`:`<img src="${v.src}" alt="${t("process")[v.step]}" loading="lazy">`}<figcaption><span>${v.step+1}</span>${t("process")[v.step]}</figcaption></figure>`).join("")}</div>
   </div></section>`:""}
 
-  <section><div class="wrap">
-    <h2>${t("customT")}</h2><div class="rule"></div>
-    <p class="lead" style="margin-bottom:22px">${t("customLead")}</p>
+  <section class="custom" id="custom"><div class="wrap">
+    <h2>${t("customH")}</h2><div class="rule"></div>
+    <p class="lead" style="margin-bottom:22px">${t("customLead2")}</p>
+    <button class="herobtn" onclick="this.nextElementSibling.hidden=false;this.style.display='none'">${t("customBtn")}</button>
+    <div class="askbox" hidden>${askButtons(t("consultMsg"))}</div>
+    <h3 class="subh">${t("orderT")}</h3>
     <div class="steps">${t("steps").map(s=>`<div class="step">${s}</div>`).join("")}</div>
     <p class="terms">${t("terms")}</p>
     <h3 class="subh">${t("stonesT")}</h3>
     <img class="palette" src="img/palette-stones.jpg" alt="${t("stonesT")}" loading="lazy" data-zoom="img/palette-stones.jpg">
-    ${askButtons(t("consultMsg"))}
   </div></section>
+
+  ${popular.length?`<section><div class="wrap"><h2>${t("popT")}</h2><div class="rule"></div><div class="items">${popular.map(itemCard).join("")}</div></div></section>`:""}
+
+  ${news.length?`<section><div class="wrap"><h2>${t("newT")}</h2><div class="rule"></div><div class="items">${news.map(itemCard).join("")}</div></div></section>`:""}
+
+  <section><div class="wrap">
+    <h2>${t("restT")}</h2><div class="rule"></div><p class="lead">${t("rest")}</p>
+    ${RESTORATION.length?`<div class="rest">${RESTORATION.map(src=>`<img src="${src}" alt="${t("restT")}" loading="lazy" data-zoom="${src}">`).join("")}</div>`:""}
+      ${askButtons(t("restMsg"))}
+  </div></section>
+
+  ${REVIEWS.length?`<section><div class="wrap">
+    <h2>${t("revT")}</h2><div class="rule"></div>
+    <div class="revs">${REVIEWS.map(src=>`<img src="${src}" alt="${t("revT")}" loading="lazy" data-zoom="${src}">`).join("")}</div>
+  </div></section>`:""}
 
   <section><div class="wrap">
     <h2>${t("giftT")}</h2><div class="rule"></div>
@@ -1218,20 +1258,13 @@ function home(){
   </div></section>
 
   <section class="about"><div class="wrap about-grid">
-    <div><h2>${t("aboutT")}</h2><div class="rule"></div>
-    ${t("about").map(p=>`<p>${p}</p>`).join("")}</div>
+    <div><h2>${t("aboutH")}</h2><div class="rule"></div>
+    ${t("about").map(p=>`<p>${p}</p>`).join("")}
+    <p class="remark">${t("remark")}</p></div>
     <video class="maister" src="img/maister.mp4" poster="img/maister.jpg" muted autoplay loop playsinline preload="metadata"></video>
   </div></section>
 
-  <section><div class="wrap">
-    <h2>${t("restT")}</h2><div class="rule"></div><p class="lead">${t("rest")}</p>
-    ${RESTORATION.length?`<div class="rest">${RESTORATION.map(src=>`<img src="${src}" alt="${t("restT")}" loading="lazy" data-zoom="${src}">`).join("")}</div>`:""}
-  </div></section>
-
-  ${REVIEWS.length?`<section><div class="wrap">
-    <h2>${t("revT")}</h2><div class="rule"></div>
-    <div class="revs">${REVIEWS.map(src=>`<img src="${src}" alt="${t("revT")}" loading="lazy" data-zoom="${src}">`).join("")}</div>
-  </div></section>`:""}
+  <section class="trust"><div class="wrap"><div class="trustg">${t("trust").map((x,k)=>`<div class="tr"><svg viewBox="0 0 24 24" aria-hidden="true">${TRUST_ICONS[k]}</svg>${x}</div>`).join("")}</div></div></section>
 
   <section class="faq"><div class="wrap">
     <h2>${t("faqT")}</h2><div class="rule"></div>
@@ -1325,7 +1358,7 @@ function render(){
   document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));
   $("#logoImg").alt = t("logo"); $("#logoSub").textContent = t("logoSub");
   $("#langs").innerHTML = ["uk","en","ro"].map(l=>`<button class="${l===lang?"on":""}" data-l="${l}">${l==="uk"?"UA":l.toUpperCase()}</button>`).join("");
-  $("#menuList").innerHTML = GROUPS.map(g=>`<div class="g">${g.n[lang]}</div>${g.s.map(s=>`<a href="#section-${s[0]}">${s[LI[lang]]}</a>`).join("")}`).join("");
+  $("#menuList").innerHTML = GROUPS.map(g=>`<details><summary>${g.n[lang]}</summary>${g.s.map(s=>`<a href="#section-${s[0]}">${s[LI[lang]]}</a>`).join("")}</details>`).join("");
   sinput.placeholder = t("sPh");
   $("#foot").innerHTML = `<img class="flogo" src="img/logo-full.png" alt="${t("logo")}">${t("copy")}`;
 
