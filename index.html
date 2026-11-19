@@ -90,8 +90,9 @@ header{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.92);backdrop-filt
 
 /* hero */
 .hero{position:relative;padding:0;border:0;min-height:max(520px,calc(100svh - 64px));display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#000}
-.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:brightness(1.35) contrast(1.05);animation:herozoom 26s ease-in-out infinite alternate}
-@keyframes herozoom{from{transform:scale(1)}to{transform:scale(1.12)}}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.8s ease}
+.hero .bg.on{opacity:1;animation:herozoom 14s ease-out forwards}
+@keyframes herozoom{from{transform:scale(1)}to{transform:scale(1.1)}}
 .hero .shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,rgba(0,0,0,.1) 22%,rgba(0,0,0,.22) 40%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.9) 78%,#000 100%)}
 .hero .wrap{position:relative;z-index:1;padding-top:30vh}
 .hero h1{text-shadow:0 2px 20px rgba(0,0,0,.85),0 0 6px rgba(0,0,0,.6);font-size:clamp(30px,8.6vw,64px);line-height:1.15;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:#f6eee0}
@@ -100,7 +101,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.92);backdrop-filt
 .hero .herobtn{background:rgba(0,0,0,.35)}
 .herocue{position:absolute;left:0;right:0;bottom:22px;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:#a9a29a;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
 .herocue svg{color:var(--bronze2)}
-@media (prefers-reduced-motion:reduce){.hero .bg{animation:none}}
+@media (prefers-reduced-motion:reduce){.hero .bg.on{animation:none}}
 @media (max-width:360px){.herobtn{letter-spacing:.1em;padding:14px 16px}}
 .herobtn{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--bronze2);border:1px solid var(--bronze);padding:14px 22px;font-size:11.5px;font-weight:500;letter-spacing:.16em;white-space:nowrap;text-transform:uppercase;background:linear-gradient(180deg,rgba(182,154,115,.07),transparent);transition:background .3s,color .3s}
 .herobtn:after{content:'';width:18px;height:1px;background:currentColor;position:relative;transition:width .3s}
@@ -1203,11 +1204,23 @@ function askButtons(msg){
 }
 
 const TRUST_ICONS = [`<path d="M18 11V6a2 2 0 00-4 0v5"/><path d="M14 10V4a2 2 0 00-4 0v2"/><path d="M10 10.5V6a2 2 0 00-4 0v8"/><path d="M18 8a2 2 0 114 0v6a8 8 0 01-8 8h-2c-2.8 0-4.5-.9-5.9-2.4L3.4 16a2 2 0 013.2-2.4L8 15"/>`, `<path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3L8 9l4 13 4-13-3-6"/><path d="M2 9h20"/>`, `<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>`, `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>`];
+const HERO_BG = [["img/process-nabir-2.jpg","50% 40%","brightness(1.35) contrast(1.05)"],["img/process-paika-3.jpg","50% 50%","none"],["img/process-nabir-3.jpg","50% 50%","brightness(1.1)"],["img/process-paika-2.jpg","50% 55%","none"]];
+let heroTimer;
+function initHeroBg(){
+  clearInterval(heroTimer);
+  const imgs = [...document.querySelectorAll(".hero .bg")];
+  if(imgs.length < 2 || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  let cur = 0;
+  heroTimer = setInterval(()=>{
+    if(document.hidden) return;
+    imgs[cur].classList.remove("on"); cur = (cur + 1) % imgs.length; imgs[cur].classList.add("on");
+  }, 7000);
+}
 function home(){
   const news = ITEMS.filter(isNew);
   const popular = POPULAR.map(id=>ITEMS.find(i=>i.id===id)).filter(Boolean);
   return `
-  <section class="hero"><img class="bg" src="img/process-nabir-2.jpg" alt="" aria-hidden="true" fetchpriority="high"><div class="shade"></div><div class="wrap">
+  <section class="hero">${HERO_BG.map((b,k)=>`<img class="bg${k?"":" on"}" src="${b[0]}" alt="" aria-hidden="true" style="object-position:${b[1]};filter:${b[2]}"${k?"":" fetchpriority=\"high\""}>`).join("")}<div class="shade"></div><div class="wrap">
     <h1>${t("h1")}</h1><div class="sub">${t("h1sub")}</div>
     <div class="herobtns">
       <a class="herobtn" href="#custom" onclick="document.getElementById('custom').scrollIntoView({behavior:'smooth'});return false">${t("heroCustom")}</a>
@@ -1385,6 +1398,7 @@ function render(){
   };
   if(h && h!=="catalog" && h!=="contacts") window.scrollTo(0,0);
   else if(h){ const el = document.getElementById(h); if(el) el.scrollIntoView(); }
+  initHeroBg();
   document.querySelectorAll(".thumbs img").forEach(im=>im.onclick=()=>{
     $("#big").src = im.dataset.p; document.querySelectorAll(".thumbs img").forEach(x=>x.classList.toggle("on",x===im));
   });
