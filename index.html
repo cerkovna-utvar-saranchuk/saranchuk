@@ -2,6 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="utf-8">
+<meta name="build" content="20261121121843">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Саранчук — ювелірна майстерня</title>
 <meta name="description" content="Ювелірна майстерня Саранчук. Церковне начиння та наперсні хрести у філіграні зі срібла й золота, ручна робота на замовлення, доставка по всьому світу">
@@ -1441,6 +1442,24 @@ const zoom = $("#zoom");
 document.addEventListener("click", e=>{ const z = e.target.dataset && e.target.dataset.zoom; if(z){ zoom.querySelector("img").src = z; zoom.classList.add("open"); } });
 zoom.addEventListener("click", ()=>zoom.classList.remove("open"));
 render();
+
+/* автооновлення: якщо на сервері нова версія — перезавантажити (для іконки на екрані iPhone) */
+(function(){
+  const cur=(document.querySelector('meta[name="build"]')||{}).content;
+  let busy=false;
+  async function check(){
+    if(busy||!cur)return; busy=true;
+    try{
+      const r=await fetch(location.pathname+"?_="+Date.now(),{cache:"no-store"});
+      const m=(await r.text()).match(/<meta name="build" content="([^"]+)"/);
+      if(m&&m[1]!==cur){ location.reload(); }
+    }catch(e){}
+    busy=false;
+  }
+  document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible")check(); });
+  window.addEventListener("pageshow",check);
+  setTimeout(check,1500);
+})();
 </script>
 </body>
 </html>
